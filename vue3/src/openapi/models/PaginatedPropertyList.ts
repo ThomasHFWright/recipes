@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Property } from './Property';
-import {
-    PropertyFromJSON,
-    PropertyFromJSONTyped,
-    PropertyToJSON,
-} from './Property';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedPropertyList {
      * @type {string}
      * @memberof PaginatedPropertyList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedPropertyList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Property>}

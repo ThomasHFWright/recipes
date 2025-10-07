@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ViewLog } from './ViewLog';
-import {
-    ViewLogFromJSON,
-    ViewLogFromJSONTyped,
-    ViewLogToJSON,
-} from './ViewLog';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedViewLogList {
      * @type {string}
      * @memberof PaginatedViewLogList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedViewLogList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<ViewLog>}

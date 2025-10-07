@@ -42,13 +42,13 @@ export interface MealType {
      * @type {string}
      * @memberof MealType
      */
-    time?: string;
+    time?: string | null;
     /**
      * 
      * @type {string}
      * @memberof MealType
      */
-    color?: string;
+    color?: string | null;
     /**
      * 
      * @type {boolean}
@@ -92,7 +92,7 @@ export function MealTypeFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function MealTypeToJSON(value?: Omit<MealType, 'createdBy'> | null): any {
+export function MealTypeToJSON(value?: MealType | null): any {
     if (value == null) {
         return value;
     }

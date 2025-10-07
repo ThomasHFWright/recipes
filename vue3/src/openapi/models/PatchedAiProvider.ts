@@ -42,6 +42,12 @@ export interface PatchedAiProvider {
      * @type {string}
      * @memberof PatchedAiProvider
      */
+    importPrompt?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAiProvider
+     */
     apiKey?: string;
     /**
      * 
@@ -54,7 +60,7 @@ export interface PatchedAiProvider {
      * @type {string}
      * @memberof PatchedAiProvider
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {boolean}
@@ -66,7 +72,7 @@ export interface PatchedAiProvider {
      * @type {number}
      * @memberof PatchedAiProvider
      */
-    space?: number;
+    space?: number | null;
     /**
      * 
      * @type {Date}
@@ -79,6 +85,12 @@ export interface PatchedAiProvider {
      * @memberof PatchedAiProvider
      */
     readonly updatedAt?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedAiProvider
+     */
+    readonly defaultImportPrompt?: string;
 }
 
 /**
@@ -101,6 +113,7 @@ export function PatchedAiProviderFromJSONTyped(json: any, ignoreDiscriminator: b
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
+        'importPrompt': json['import_prompt'] == null ? undefined : json['import_prompt'],
         'apiKey': json['api_key'] == null ? undefined : json['api_key'],
         'modelName': json['model_name'] == null ? undefined : json['model_name'],
         'url': json['url'] == null ? undefined : json['url'],
@@ -108,10 +121,11 @@ export function PatchedAiProviderFromJSONTyped(json: any, ignoreDiscriminator: b
         'space': json['space'] == null ? undefined : json['space'],
         'createdAt': json['created_at'] == null ? undefined : (new Date(json['created_at'])),
         'updatedAt': json['updated_at'] == null ? undefined : (new Date(json['updated_at'])),
+        'defaultImportPrompt': json['default_import_prompt'] == null ? undefined : json['default_import_prompt'],
     };
 }
 
-export function PatchedAiProviderToJSON(value?: Omit<PatchedAiProvider, 'createdAt'|'updatedAt'> | null): any {
+export function PatchedAiProviderToJSON(value?: PatchedAiProvider | null): any {
     if (value == null) {
         return value;
     }
@@ -120,6 +134,7 @@ export function PatchedAiProviderToJSON(value?: Omit<PatchedAiProvider, 'created
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
+        'import_prompt': value['importPrompt'],
         'api_key': value['apiKey'],
         'model_name': value['modelName'],
         'url': value['url'],

@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Keyword } from './Keyword';
-import {
-    KeywordFromJSON,
-    KeywordFromJSONTyped,
-    KeywordToJSON,
-} from './Keyword';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedKeywordList {
      * @type {string}
      * @memberof PaginatedKeywordList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedKeywordList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Keyword>}

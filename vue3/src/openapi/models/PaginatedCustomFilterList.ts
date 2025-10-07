@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomFilter } from './CustomFilter';
-import {
-    CustomFilterFromJSON,
-    CustomFilterFromJSONTyped,
-    CustomFilterToJSON,
-} from './CustomFilter';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedCustomFilterList {
      * @type {string}
      * @memberof PaginatedCustomFilterList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedCustomFilterList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<CustomFilter>}

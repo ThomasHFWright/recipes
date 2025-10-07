@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ExportLog } from './ExportLog';
-import {
-    ExportLogFromJSON,
-    ExportLogFromJSONTyped,
-    ExportLogToJSON,
-} from './ExportLog';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedExportLogList {
      * @type {string}
      * @memberof PaginatedExportLogList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedExportLogList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<ExportLog>}

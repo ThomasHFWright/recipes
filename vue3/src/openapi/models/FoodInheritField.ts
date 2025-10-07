@@ -64,13 +64,13 @@ export interface FoodInheritField {
      * @type {string}
      * @memberof FoodInheritField
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof FoodInheritField
      */
-    field?: string;
+    field?: string | null;
 }
 
 /**

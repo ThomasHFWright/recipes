@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AutomationTypeEnum } from './AutomationTypeEnum';
-import {
-    AutomationTypeEnumFromJSON,
-    AutomationTypeEnumFromJSONTyped,
-    AutomationTypeEnumToJSON,
-} from './AutomationTypeEnum';
 
 /**
  * 
@@ -49,25 +43,25 @@ export interface PatchedAutomation {
      * @type {string}
      * @memberof PatchedAutomation
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedAutomation
      */
-    param1?: string;
+    param1?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedAutomation
      */
-    param2?: string;
+    param2?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedAutomation
      */
-    param3?: string;
+    param3?: string | null;
     /**
      * 
      * @type {number}
@@ -118,7 +112,7 @@ export function PatchedAutomationFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function PatchedAutomationToJSON(value?: Omit<PatchedAutomation, 'createdBy'> | null): any {
+export function PatchedAutomationToJSON(value?: PatchedAutomation | null): any {
     if (value == null) {
         return value;
     }

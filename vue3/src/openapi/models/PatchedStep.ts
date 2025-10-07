@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserFileView } from './UserFileView';
-import {
-    UserFileViewFromJSON,
-    UserFileViewFromJSONTyped,
-    UserFileViewToJSON,
-} from './UserFileView';
-import type { Ingredient } from './Ingredient';
-import {
-    IngredientFromJSON,
-    IngredientFromJSONTyped,
-    IngredientToJSON,
-} from './Ingredient';
 
 /**
  * Adds nested create feature
@@ -82,22 +70,22 @@ export interface PatchedStep {
     showAsHeader?: boolean;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedStep
      */
-    file?: UserFileView;
+    file?: PatchedSpaceImage | null;
     /**
      * 
      * @type {number}
      * @memberof PatchedStep
      */
-    stepRecipe?: number;
+    stepRecipe?: number | null;
     /**
      * 
      * @type {any}
      * @memberof PatchedStep
      */
-    readonly stepRecipeData?: any;
+    readonly stepRecipeData?: any | null;
     /**
      * 
      * @type {number}
@@ -137,7 +125,7 @@ export function PatchedStepFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'time': json['time'] == null ? undefined : json['time'],
         'order': json['order'] == null ? undefined : json['order'],
         'showAsHeader': json['show_as_header'] == null ? undefined : json['show_as_header'],
-        'file': json['file'] == null ? undefined : UserFileViewFromJSON(json['file']),
+        'file': json['file'] == null ? undefined : PatchedSpaceImageFromJSON(json['file']),
         'stepRecipe': json['step_recipe'] == null ? undefined : json['step_recipe'],
         'stepRecipeData': json['step_recipe_data'] == null ? undefined : json['step_recipe_data'],
         'numrecipe': json['numrecipe'] == null ? undefined : json['numrecipe'],
@@ -145,7 +133,7 @@ export function PatchedStepFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function PatchedStepToJSON(value?: Omit<PatchedStep, 'instructionsMarkdown'|'stepRecipeData'|'numrecipe'> | null): any {
+export function PatchedStepToJSON(value?: PatchedStep | null): any {
     if (value == null) {
         return value;
     }
@@ -158,7 +146,7 @@ export function PatchedStepToJSON(value?: Omit<PatchedStep, 'instructionsMarkdow
         'time': value['time'],
         'order': value['order'],
         'show_as_header': value['showAsHeader'],
-        'file': UserFileViewToJSON(value['file']),
+        'file': PatchedSpaceImageToJSON(value['file']),
         'step_recipe': value['stepRecipe'],
         'show_ingredients_table': value['showIngredientsTable'],
     };

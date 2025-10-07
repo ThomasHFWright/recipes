@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserSpace } from './UserSpace';
-import {
-    UserSpaceFromJSON,
-    UserSpaceFromJSONTyped,
-    UserSpaceToJSON,
-} from './UserSpace';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedUserSpaceList {
      * @type {string}
      * @memberof PaginatedUserSpaceList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedUserSpaceList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<UserSpace>}

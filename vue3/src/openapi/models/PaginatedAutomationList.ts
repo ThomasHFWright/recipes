@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Automation } from './Automation';
-import {
-    AutomationFromJSON,
-    AutomationFromJSONTyped,
-    AutomationToJSON,
-} from './Automation';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedAutomationList {
      * @type {string}
      * @memberof PaginatedAutomationList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedAutomationList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Automation>}

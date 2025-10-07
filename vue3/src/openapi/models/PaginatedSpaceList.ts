@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Space } from './Space';
-import {
-    SpaceFromJSON,
-    SpaceFromJSONTyped,
-    SpaceToJSON,
-} from './Space';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedSpaceList {
      * @type {string}
      * @memberof PaginatedSpaceList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedSpaceList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Space>}

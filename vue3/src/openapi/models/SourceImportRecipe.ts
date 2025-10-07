@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SourceImportStep } from './SourceImportStep';
-import {
-    SourceImportStepFromJSON,
-    SourceImportStepFromJSONTyped,
-    SourceImportStepToJSON,
-} from './SourceImportStep';
-import type { SourceImportProperty } from './SourceImportProperty';
-import {
-    SourceImportPropertyFromJSON,
-    SourceImportPropertyFromJSONTyped,
-    SourceImportPropertyToJSON,
-} from './SourceImportProperty';
-import type { SourceImportKeyword } from './SourceImportKeyword';
-import {
-    SourceImportKeywordFromJSON,
-    SourceImportKeywordFromJSONTyped,
-    SourceImportKeywordToJSON,
-} from './SourceImportKeyword';
 
 /**
  * 

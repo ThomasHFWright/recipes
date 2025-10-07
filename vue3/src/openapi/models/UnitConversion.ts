@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -70,16 +58,16 @@ export interface UnitConversion {
     convertedUnit: Unit;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof UnitConversion
      */
-    food?: Food;
+    food?: IngredientFood | null;
     /**
      * 
      * @type {string}
      * @memberof UnitConversion
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**
@@ -110,12 +98,12 @@ export function UnitConversionFromJSONTyped(json: any, ignoreDiscriminator: bool
         'baseUnit': UnitFromJSON(json['base_unit']),
         'convertedAmount': json['converted_amount'],
         'convertedUnit': UnitFromJSON(json['converted_unit']),
-        'food': json['food'] == null ? undefined : FoodFromJSON(json['food']),
+        'food': json['food'] == null ? undefined : IngredientFoodFromJSON(json['food']),
         'openDataSlug': json['open_data_slug'] == null ? undefined : json['open_data_slug'],
     };
 }
 
-export function UnitConversionToJSON(value?: Omit<UnitConversion, 'name'> | null): any {
+export function UnitConversionToJSON(value?: UnitConversion | null): any {
     if (value == null) {
         return value;
     }
@@ -126,7 +114,7 @@ export function UnitConversionToJSON(value?: Omit<UnitConversion, 'name'> | null
         'base_unit': UnitToJSON(value['baseUnit']),
         'converted_amount': value['convertedAmount'],
         'converted_unit': UnitToJSON(value['convertedUnit']),
-        'food': FoodToJSON(value['food']),
+        'food': IngredientFoodToJSON(value['food']),
         'open_data_slug': value['openDataSlug'],
     };
 }

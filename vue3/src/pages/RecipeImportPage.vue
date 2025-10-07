@@ -167,6 +167,16 @@
 
                                     <v-textarea v-model="sourceImportText" :loading="loading" autofocus v-if="aiMode == 'text'"
                                                 @keydown.enter="loadRecipeFromAiImport()"></v-textarea>
+
+                                    <v-textarea
+                                        v-model="aiImportPrompt"
+                                        :label="$t('AiImportPromptLabel')"
+                                        :hint="$t('AiImportPromptHelp')"
+                                        persistent-hint
+                                        auto-grow
+                                        :loading="loading"
+                                        :placeholder="aiImportPromptPlaceholder"
+                                    ></v-textarea>
                                 </div>
 
                                 <v-textarea v-model="sourceImportText" label="JSON/HTML" :loading="loading" v-if="importType == 'source'" :hint="$t('SourceImportHelp')"
@@ -661,6 +671,7 @@ const urlList = ref([] as string[])
 const urlListImportedRecipes = ref([] as Recipe[])
 
 const sourceImportText = ref("")
+const aiImportPrompt = ref("")
 const appImportFiles = ref<File[]>([])
 const appImportDuplicates = ref(false)
 const appImportMealPlans = ref(true)
@@ -670,6 +681,16 @@ const appImportLog = ref<null | ImportLog>(null)
 const image = ref<null | File>(null)
 const aiMode = ref<'file' | 'text'>('file')
 const selectedAiProvider = ref<undefined | AiProvider>(useUserPreferenceStore().activeSpace.aiDefaultProvider)
+const aiImportPromptPlaceholder = computed(() => {
+    if (!selectedAiProvider.value) {
+        return t('AiImportPromptDefault')
+    }
+    const providerPrompt = selectedAiProvider.value.importPrompt
+    if (providerPrompt && providerPrompt.trim() !== '') {
+        return providerPrompt
+    }
+    return selectedAiProvider.value.defaultImportPrompt ?? t('AiImportPromptDefault')
+})
 const editAfterImport = ref(false)
 
 const bookmarkletToken = ref("")
@@ -752,9 +773,9 @@ function loadRecipeFromAiImport() {
     }
 
     if (image.value != null && aiMode.value == 'file') {
-        request = doAiImport(selectedAiProvider.value.id!, image.value)
+        request = doAiImport(selectedAiProvider.value.id!, image.value, '', '', aiImportPrompt.value)
     } else if (sourceImportText.value != '' && aiMode.value == 'text') {
-        request = doAiImport(selectedAiProvider.value.id!, null, sourceImportText.value)
+        request = doAiImport(selectedAiProvider.value.id!, null, sourceImportText.value, '', aiImportPrompt.value)
     }
 
     if (request != null) {

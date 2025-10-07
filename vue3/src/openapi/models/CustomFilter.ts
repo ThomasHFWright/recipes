@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * Adds nested create feature
@@ -86,7 +80,7 @@ export function CustomFilterFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function CustomFilterToJSON(value?: Omit<CustomFilter, 'createdBy'> | null): any {
+export function CustomFilterToJSON(value?: CustomFilter | null): any {
     if (value == null) {
         return value;
     }

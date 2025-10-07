@@ -36,7 +36,7 @@ export interface FoodSimple {
      * @type {string}
      * @memberof FoodSimple
      */
-    pluralName?: string;
+    pluralName?: string | null;
 }
 
 /**

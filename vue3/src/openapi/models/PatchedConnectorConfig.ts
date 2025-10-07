@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ConnectorConfigTypeEnum } from './ConnectorConfigTypeEnum';
-import {
-    ConnectorConfigTypeEnumFromJSON,
-    ConnectorConfigTypeEnumFromJSONTyped,
-    ConnectorConfigTypeEnumToJSON,
-} from './ConnectorConfigTypeEnum';
 
 /**
  * 
@@ -49,19 +43,19 @@ export interface PatchedConnectorConfig {
      * @type {string}
      * @memberof PatchedConnectorConfig
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedConnectorConfig
      */
-    token?: string;
+    token?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedConnectorConfig
      */
-    todoEntity?: string;
+    todoEntity?: string | null;
     /**
      * Is Connector Enabled
      * @type {boolean}
@@ -132,7 +126,7 @@ export function PatchedConnectorConfigFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function PatchedConnectorConfigToJSON(value?: Omit<PatchedConnectorConfig, 'createdBy'> | null): any {
+export function PatchedConnectorConfigToJSON(value?: PatchedConnectorConfig | null): any {
     if (value == null) {
         return value;
     }

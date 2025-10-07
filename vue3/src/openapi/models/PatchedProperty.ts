@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { PropertyType } from './PropertyType';
-import {
-    PropertyTypeFromJSON,
-    PropertyTypeFromJSONTyped,
-    PropertyTypeToJSON,
-} from './PropertyType';
 
 /**
  * Moves `UniqueValidator`'s from the validation stage to the save stage.
@@ -71,7 +65,7 @@ export interface PatchedProperty {
      * @type {number}
      * @memberof PatchedProperty
      */
-    propertyAmount?: number;
+    propertyAmount?: number | null;
     /**
      * 
      * @type {PropertyType}

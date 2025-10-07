@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedUnitList {
      * @type {string}
      * @memberof PaginatedUnitList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedUnitList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Unit>}

@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomFilter } from './CustomFilter';
-import {
-    CustomFilterFromJSON,
-    CustomFilterFromJSONTyped,
-    CustomFilterToJSON,
-} from './CustomFilter';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * Adds nested create feature
@@ -64,10 +52,10 @@ export interface RecipeBook {
     readonly createdBy: User;
     /**
      * 
-     * @type {CustomFilter}
+     * @type {ExportRequestCustomFilter}
      * @memberof RecipeBook
      */
-    filter?: CustomFilter;
+    filter?: ExportRequestCustomFilter | null;
     /**
      * 
      * @type {number}
@@ -101,12 +89,12 @@ export function RecipeBookFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'description': json['description'] == null ? undefined : json['description'],
         'shared': ((json['shared'] as Array<any>).map(UserFromJSON)),
         'createdBy': UserFromJSON(json['created_by']),
-        'filter': json['filter'] == null ? undefined : CustomFilterFromJSON(json['filter']),
+        'filter': json['filter'] == null ? undefined : ExportRequestCustomFilterFromJSON(json['filter']),
         'order': json['order'] == null ? undefined : json['order'],
     };
 }
 
-export function RecipeBookToJSON(value?: Omit<RecipeBook, 'createdBy'> | null): any {
+export function RecipeBookToJSON(value?: RecipeBook | null): any {
     if (value == null) {
         return value;
     }
@@ -116,7 +104,7 @@ export function RecipeBookToJSON(value?: Omit<RecipeBook, 'createdBy'> | null): 
         'name': value['name'],
         'description': value['description'],
         'shared': ((value['shared'] as Array<any>).map(UserToJSON)),
-        'filter': CustomFilterToJSON(value['filter']),
+        'filter': ExportRequestCustomFilterToJSON(value['filter']),
         'order': value['order'],
     };
 }

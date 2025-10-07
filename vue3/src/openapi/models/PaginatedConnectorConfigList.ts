@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ConnectorConfig } from './ConnectorConfig';
-import {
-    ConnectorConfigFromJSON,
-    ConnectorConfigFromJSONTyped,
-    ConnectorConfigToJSON,
-} from './ConnectorConfig';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedConnectorConfigList {
      * @type {string}
      * @memberof PaginatedConnectorConfigList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedConnectorConfigList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<ConnectorConfig>}

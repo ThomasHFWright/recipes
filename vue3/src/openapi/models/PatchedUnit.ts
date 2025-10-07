@@ -70,25 +70,25 @@ export interface PatchedUnit {
      * @type {string}
      * @memberof PatchedUnit
      */
-    pluralName?: string;
+    pluralName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedUnit
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedUnit
      */
-    baseUnit?: string;
+    baseUnit?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedUnit
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**

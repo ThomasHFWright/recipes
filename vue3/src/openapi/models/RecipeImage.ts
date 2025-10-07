@@ -24,13 +24,13 @@ export interface RecipeImage {
      * @type {string}
      * @memberof RecipeImage
      */
-    image?: string;
+    image?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RecipeImage
      */
-    imageUrl?: string;
+    imageUrl?: string | null;
 }
 
 /**

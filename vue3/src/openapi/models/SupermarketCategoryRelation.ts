@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SupermarketCategory } from './SupermarketCategory';
-import {
-    SupermarketCategoryFromJSON,
-    SupermarketCategoryFromJSONTyped,
-    SupermarketCategoryToJSON,
-} from './SupermarketCategory';
 
 /**
  * Adds nested create feature

@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportOpenDataResponseDetail } from './ImportOpenDataResponseDetail';
-import {
-    ImportOpenDataResponseDetailFromJSON,
-    ImportOpenDataResponseDetailFromJSONTyped,
-    ImportOpenDataResponseDetailToJSON,
-} from './ImportOpenDataResponseDetail';
 
 /**
  * 

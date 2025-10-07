@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MethodEnum } from './MethodEnum';
-import {
-    MethodEnumFromJSON,
-    MethodEnumFromJSONTyped,
-    MethodEnumToJSON,
-} from './MethodEnum';
 
 /**
  * Adds nested create feature
@@ -49,25 +43,25 @@ export interface PatchedStorage {
      * @type {string}
      * @memberof PatchedStorage
      */
-    username?: string;
+    username?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedStorage
      */
-    password?: string;
+    password?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedStorage
      */
-    token?: string;
+    token?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedStorage
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
@@ -111,7 +105,7 @@ export function PatchedStorageFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function PatchedStorageToJSON(value?: Omit<PatchedStorage, 'createdBy'> | null): any {
+export function PatchedStorageToJSON(value?: PatchedStorage | null): any {
     if (value == null) {
         return value;
     }

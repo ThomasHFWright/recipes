@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RecipeOverview } from './RecipeOverview';
-import {
-    RecipeOverviewFromJSON,
-    RecipeOverviewFromJSONTyped,
-    RecipeOverviewToJSON,
-} from './RecipeOverview';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedRecipeOverviewList {
      * @type {string}
      * @memberof PaginatedRecipeOverviewList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedRecipeOverviewList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<RecipeOverview>}

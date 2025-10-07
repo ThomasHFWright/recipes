@@ -416,12 +416,19 @@ class AiProvider(models.Model):
     model_name = models.CharField(max_length=256)
     url = models.CharField(max_length=2048, blank=True, null=True)
     log_credit_cost = models.BooleanField(default=True)
+    import_prompt = models.TextField(blank=True, null=True, verbose_name=_('Import prompt'))
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
+
+    @property
+    def default_import_prompt(self):
+        from cookbook.helper.ai_prompts import DEFAULT_IMPORT_PROMPT_FILE
+
+        return str(DEFAULT_IMPORT_PROMPT_FILE)
 
     class Meta:
         ordering = ('pk',)

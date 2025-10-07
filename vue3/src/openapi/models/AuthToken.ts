@@ -65,7 +65,7 @@ export function AuthTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function AuthTokenToJSON(value?: Omit<AuthToken, 'token'> | null): any {
+export function AuthTokenToJSON(value?: AuthToken | null): any {
     if (value == null) {
         return value;
     }

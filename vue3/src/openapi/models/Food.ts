@@ -13,42 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SupermarketCategory } from './SupermarketCategory';
-import {
-    SupermarketCategoryFromJSON,
-    SupermarketCategoryFromJSONTyped,
-    SupermarketCategoryToJSON,
-} from './SupermarketCategory';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Property } from './Property';
-import {
-    PropertyFromJSON,
-    PropertyFromJSONTyped,
-    PropertyToJSON,
-} from './Property';
-import type { FoodInheritField } from './FoodInheritField';
-import {
-    FoodInheritFieldFromJSON,
-    FoodInheritFieldFromJSONTyped,
-    FoodInheritFieldToJSON,
-} from './FoodInheritField';
-import type { FoodSimple } from './FoodSimple';
-import {
-    FoodSimpleFromJSON,
-    FoodSimpleFromJSONTyped,
-    FoodSimpleToJSON,
-} from './FoodSimple';
-import type { RecipeSimple } from './RecipeSimple';
-import {
-    RecipeSimpleFromJSON,
-    RecipeSimpleFromJSONTyped,
-    RecipeSimpleToJSON,
-} from './RecipeSimple';
 
 /**
  * Moves `UniqueValidator`'s from the validation stage to the save stage.
@@ -107,7 +71,7 @@ export interface Food {
      * @type {string}
      * @memberof Food
      */
-    pluralName?: string;
+    pluralName?: string | null;
     /**
      * 
      * @type {string}
@@ -122,22 +86,22 @@ export interface Food {
     readonly shopping: string;
     /**
      * 
-     * @type {RecipeSimple}
+     * @type {FoodRecipe}
      * @memberof Food
      */
-    recipe?: RecipeSimple;
+    recipe?: FoodRecipe | null;
     /**
      * 
      * @type {string}
      * @memberof Food
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {Array<Property>}
      * @memberof Food
      */
-    properties?: Array<Property>;
+    properties?: Array<Property> | null;
     /**
      * 
      * @type {number}
@@ -146,28 +110,28 @@ export interface Food {
     propertiesFoodAmount?: number;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof Food
      */
-    propertiesFoodUnit?: Unit;
+    propertiesFoodUnit?: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
      * @memberof Food
      */
-    fdcId?: number;
+    fdcId?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof Food
      */
-    foodOnhand?: boolean;
+    foodOnhand?: boolean | null;
     /**
      * 
-     * @type {SupermarketCategory}
+     * @type {FoodSupermarketCategory}
      * @memberof Food
      */
-    supermarketCategory?: SupermarketCategory;
+    supermarketCategory?: FoodSupermarketCategory | null;
     /**
      * 
      * @type {number}
@@ -185,7 +149,7 @@ export interface Food {
      * @type {Array<FoodInheritField>}
      * @memberof Food
      */
-    inheritFields?: Array<FoodInheritField>;
+    inheritFields?: Array<FoodInheritField> | null;
     /**
      * Returns a string representation of a tree node and it's ancestors,
      * e.g. 'Cuisine > Asian > Chinese > Catonese'.
@@ -204,7 +168,7 @@ export interface Food {
      * @type {Array<FoodSimple>}
      * @memberof Food
      */
-    substitute?: Array<FoodSimple>;
+    substitute?: Array<FoodSimple> | null;
     /**
      * 
      * @type {boolean}
@@ -228,13 +192,13 @@ export interface Food {
      * @type {Array<FoodInheritField>}
      * @memberof Food
      */
-    childInheritFields?: Array<FoodInheritField>;
+    childInheritFields?: Array<FoodInheritField> | null;
     /**
      * 
      * @type {string}
      * @memberof Food
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**
@@ -265,14 +229,14 @@ export function FoodFromJSONTyped(json: any, ignoreDiscriminator: boolean): Food
         'pluralName': json['plural_name'] == null ? undefined : json['plural_name'],
         'description': json['description'] == null ? undefined : json['description'],
         'shopping': json['shopping'],
-        'recipe': json['recipe'] == null ? undefined : RecipeSimpleFromJSON(json['recipe']),
+        'recipe': json['recipe'] == null ? undefined : FoodRecipeFromJSON(json['recipe']),
         'url': json['url'] == null ? undefined : json['url'],
         'properties': json['properties'] == null ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'propertiesFoodAmount': json['properties_food_amount'] == null ? undefined : json['properties_food_amount'],
-        'propertiesFoodUnit': json['properties_food_unit'] == null ? undefined : UnitFromJSON(json['properties_food_unit']),
+        'propertiesFoodUnit': json['properties_food_unit'] == null ? undefined : FoodPropertiesFoodUnitFromJSON(json['properties_food_unit']),
         'fdcId': json['fdc_id'] == null ? undefined : json['fdc_id'],
         'foodOnhand': json['food_onhand'] == null ? undefined : json['food_onhand'],
-        'supermarketCategory': json['supermarket_category'] == null ? undefined : SupermarketCategoryFromJSON(json['supermarket_category']),
+        'supermarketCategory': json['supermarket_category'] == null ? undefined : FoodSupermarketCategoryFromJSON(json['supermarket_category']),
         'parent': json['parent'],
         'numchild': json['numchild'],
         'inheritFields': json['inherit_fields'] == null ? undefined : ((json['inherit_fields'] as Array<any>).map(FoodInheritFieldFromJSON)),
@@ -287,7 +251,7 @@ export function FoodFromJSONTyped(json: any, ignoreDiscriminator: boolean): Food
     };
 }
 
-export function FoodToJSON(value?: Omit<Food, 'shopping'|'parent'|'numchild'|'fullName'|'substituteOnhand'> | null): any {
+export function FoodToJSON(value?: Food | null): any {
     if (value == null) {
         return value;
     }
@@ -297,14 +261,14 @@ export function FoodToJSON(value?: Omit<Food, 'shopping'|'parent'|'numchild'|'fu
         'name': value['name'],
         'plural_name': value['pluralName'],
         'description': value['description'],
-        'recipe': RecipeSimpleToJSON(value['recipe']),
+        'recipe': FoodRecipeToJSON(value['recipe']),
         'url': value['url'],
         'properties': value['properties'] == null ? undefined : ((value['properties'] as Array<any>).map(PropertyToJSON)),
         'properties_food_amount': value['propertiesFoodAmount'],
-        'properties_food_unit': UnitToJSON(value['propertiesFoodUnit']),
+        'properties_food_unit': FoodPropertiesFoodUnitToJSON(value['propertiesFoodUnit']),
         'fdc_id': value['fdcId'],
         'food_onhand': value['foodOnhand'],
-        'supermarket_category': SupermarketCategoryToJSON(value['supermarketCategory']),
+        'supermarket_category': FoodSupermarketCategoryToJSON(value['supermarketCategory']),
         'inherit_fields': value['inheritFields'] == null ? undefined : ((value['inheritFields'] as Array<any>).map(FoodInheritFieldToJSON)),
         'ignore_shopping': value['ignoreShopping'],
         'substitute': value['substitute'] == null ? undefined : ((value['substitute'] as Array<any>).map(FoodSimpleToJSON)),

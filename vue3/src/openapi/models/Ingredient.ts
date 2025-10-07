@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -40,16 +28,16 @@ export interface Ingredient {
     id?: number;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof Ingredient
      */
-    food: Food | null;
+    food: IngredientFood | null;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof Ingredient
      */
-    unit: Unit | null;
+    unit: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
@@ -67,7 +55,7 @@ export interface Ingredient {
      * @type {string}
      * @memberof Ingredient
      */
-    note?: string;
+    note?: string | null;
     /**
      * 
      * @type {number}
@@ -91,7 +79,7 @@ export interface Ingredient {
      * @type {string}
      * @memberof Ingredient
      */
-    originalText?: string;
+    originalText?: string | null;
     /**
      * 
      * @type {Array<any>}
@@ -135,8 +123,8 @@ export function IngredientFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'food': FoodFromJSON(json['food']),
-        'unit': UnitFromJSON(json['unit']),
+        'food': IngredientFoodFromJSON(json['food']),
+        'unit': FoodPropertiesFoodUnitFromJSON(json['unit']),
         'amount': json['amount'],
         'conversions': json['conversions'],
         'note': json['note'] == null ? undefined : json['note'],
@@ -150,15 +138,15 @@ export function IngredientFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function IngredientToJSON(value?: Omit<Ingredient, 'conversions'|'usedInRecipes'> | null): any {
+export function IngredientToJSON(value?: Ingredient | null): any {
     if (value == null) {
         return value;
     }
     return {
         
         'id': value['id'],
-        'food': FoodToJSON(value['food']),
-        'unit': UnitToJSON(value['unit']),
+        'food': IngredientFoodToJSON(value['food']),
+        'unit': FoodPropertiesFoodUnitToJSON(value['unit']),
         'amount': value['amount'],
         'note': value['note'],
         'order': value['order'],

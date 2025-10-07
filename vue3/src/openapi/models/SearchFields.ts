@@ -64,13 +64,13 @@ export interface SearchFields {
      * @type {string}
      * @memberof SearchFields
      */
-    name?: string;
+    name?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SearchFields
      */
-    field?: string;
+    field?: string | null;
 }
 
 /**

@@ -70,13 +70,13 @@ export interface PatchedSupermarketCategory {
      * @type {string}
      * @memberof PatchedSupermarketCategory
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedSupermarketCategory
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**

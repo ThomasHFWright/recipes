@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Group } from './Group';
-import {
-    GroupFromJSON,
-    GroupFromJSONTyped,
-    GroupToJSON,
-} from './Group';
 
 /**
  * Adds nested create feature
@@ -73,7 +67,7 @@ export interface InviteLink {
      * @type {string}
      * @memberof InviteLink
      */
-    internalNote?: string;
+    internalNote?: string | null;
     /**
      * 
      * @type {number}
@@ -123,7 +117,7 @@ export function InviteLinkFromJSONTyped(json: any, ignoreDiscriminator: boolean)
     };
 }
 
-export function InviteLinkToJSON(value?: Omit<InviteLink, 'uuid'|'usedBy'|'createdBy'|'createdAt'> | null): any {
+export function InviteLinkToJSON(value?: InviteLink | null): any {
     if (value == null) {
         return value;
     }

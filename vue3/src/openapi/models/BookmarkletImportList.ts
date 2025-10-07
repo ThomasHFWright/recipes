@@ -30,7 +30,7 @@ export interface BookmarkletImportList {
      * @type {string}
      * @memberof BookmarkletImportList
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {number}
@@ -71,7 +71,7 @@ export function BookmarkletImportListFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function BookmarkletImportListToJSON(value?: Omit<BookmarkletImportList, 'createdBy'|'createdAt'> | null): any {
+export function BookmarkletImportListToJSON(value?: BookmarkletImportList | null): any {
     if (value == null) {
         return value;
     }

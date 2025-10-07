@@ -13,42 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { UserFileView } from './UserFileView';
-import {
-    UserFileViewFromJSON,
-    UserFileViewFromJSONTyped,
-    UserFileViewToJSON,
-} from './UserFileView';
-import type { UserPreferenceNavTextColorEnum } from './UserPreferenceNavTextColorEnum';
-import {
-    UserPreferenceNavTextColorEnumFromJSON,
-    UserPreferenceNavTextColorEnumFromJSONTyped,
-    UserPreferenceNavTextColorEnumToJSON,
-} from './UserPreferenceNavTextColorEnum';
-import type { FoodInheritField } from './FoodInheritField';
-import {
-    FoodInheritFieldFromJSON,
-    FoodInheritFieldFromJSONTyped,
-    FoodInheritFieldToJSON,
-} from './FoodInheritField';
-import type { ThemeEnum } from './ThemeEnum';
-import {
-    ThemeEnumFromJSON,
-    ThemeEnumFromJSONTyped,
-    ThemeEnumToJSON,
-} from './ThemeEnum';
-import type { DefaultPageEnum } from './DefaultPageEnum';
-import {
-    DefaultPageEnumFromJSON,
-    DefaultPageEnumFromJSONTyped,
-    DefaultPageEnumToJSON,
-} from './DefaultPageEnum';
 
 /**
  * Adds nested create feature
@@ -64,10 +28,10 @@ export interface UserPreference {
     readonly user: User;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof UserPreference
      */
-    image?: UserFileView;
+    image?: PatchedSpaceImage | null;
     /**
      * 
      * @type {ThemeEnum}
@@ -121,7 +85,7 @@ export interface UserPreference {
      * @type {Array<User>}
      * @memberof UserPreference
      */
-    planShare?: Array<User>;
+    planShare?: Array<User> | null;
     /**
      * 
      * @type {boolean}
@@ -181,7 +145,7 @@ export interface UserPreference {
      * @type {Array<User>}
      * @memberof UserPreference
      */
-    shoppingShare?: Array<User>;
+    shoppingShare?: Array<User> | null;
     /**
      * 
      * @type {number}
@@ -253,7 +217,7 @@ export function UserPreferenceFromJSONTyped(json: any, ignoreDiscriminator: bool
     return {
         
         'user': UserFromJSON(json['user']),
-        'image': json['image'] == null ? undefined : UserFileViewFromJSON(json['image']),
+        'image': json['image'] == null ? undefined : PatchedSpaceImageFromJSON(json['image']),
         'theme': json['theme'] == null ? undefined : ThemeEnumFromJSON(json['theme']),
         'navBgColor': json['nav_bg_color'] == null ? undefined : json['nav_bg_color'],
         'navTextColor': json['nav_text_color'] == null ? undefined : UserPreferenceNavTextColorEnumFromJSON(json['nav_text_color']),
@@ -284,13 +248,13 @@ export function UserPreferenceFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function UserPreferenceToJSON(value?: Omit<UserPreference, 'user'|'foodInheritDefault'|'foodChildrenExist'> | null): any {
+export function UserPreferenceToJSON(value?: UserPreference | null): any {
     if (value == null) {
         return value;
     }
     return {
         
-        'image': UserFileViewToJSON(value['image']),
+        'image': PatchedSpaceImageToJSON(value['image']),
         'theme': ThemeEnumToJSON(value['theme']),
         'nav_bg_color': value['navBgColor'],
         'nav_text_color': UserPreferenceNavTextColorEnumToJSON(value['navTextColor']),

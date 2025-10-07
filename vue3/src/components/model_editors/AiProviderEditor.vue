@@ -15,6 +15,15 @@
                 <v-text-field :label="$t('Name')" v-model="editingObj.name"></v-text-field>
                 <v-textarea :label="$t('Description')" v-model="editingObj.description"></v-textarea>
 
+                <v-textarea
+                    :label="$t('ImportPrompt')"
+                    :hint="$t('ImportPromptHelp')"
+                    persistent-hint
+                    auto-grow
+                    v-model="editingObj.importPrompt"
+                    :placeholder="importPromptPlaceholder"
+                ></v-textarea>
+
 
                 <v-text-field :label="$t('APIKey')" v-model="editingObj.apiKey"></v-text-field>
 
@@ -39,7 +48,7 @@
 
 <script setup lang="ts">
 
-import {onMounted, PropType, ref, watch} from "vue";
+import {computed, onMounted, PropType, ref, watch} from "vue";
 import {AiProvider} from "@/openapi";
 
 import ModelEditorBase from "@/components/model_editors/ModelEditorBase.vue";
@@ -70,6 +79,7 @@ watch([() => props.item, () => props.itemId], () => {
 const aiModels = ref(['gemini/gemini-2.5-pro', 'gemini/gemini-2.5-flash', 'gemini/gemini-2.5-flash-lite', 'gpt-5', 'gpt-5-mini', 'gpt-5-nano'])
 
 const globalProvider = ref(false)
+const importPromptPlaceholder = computed(() => editingObj.value?.defaultImportPrompt ?? '')
 
 watch(() => globalProvider.value, () => {
     if (globalProvider.value) {

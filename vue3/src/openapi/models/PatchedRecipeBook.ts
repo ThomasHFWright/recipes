@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomFilter } from './CustomFilter';
-import {
-    CustomFilterFromJSON,
-    CustomFilterFromJSONTyped,
-    CustomFilterToJSON,
-} from './CustomFilter';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * Adds nested create feature
@@ -64,10 +52,10 @@ export interface PatchedRecipeBook {
     readonly createdBy?: User;
     /**
      * 
-     * @type {CustomFilter}
+     * @type {ExportRequestCustomFilter}
      * @memberof PatchedRecipeBook
      */
-    filter?: CustomFilter;
+    filter?: ExportRequestCustomFilter | null;
     /**
      * 
      * @type {number}
@@ -98,12 +86,12 @@ export function PatchedRecipeBookFromJSONTyped(json: any, ignoreDiscriminator: b
         'description': json['description'] == null ? undefined : json['description'],
         'shared': json['shared'] == null ? undefined : ((json['shared'] as Array<any>).map(UserFromJSON)),
         'createdBy': json['created_by'] == null ? undefined : UserFromJSON(json['created_by']),
-        'filter': json['filter'] == null ? undefined : CustomFilterFromJSON(json['filter']),
+        'filter': json['filter'] == null ? undefined : ExportRequestCustomFilterFromJSON(json['filter']),
         'order': json['order'] == null ? undefined : json['order'],
     };
 }
 
-export function PatchedRecipeBookToJSON(value?: Omit<PatchedRecipeBook, 'createdBy'> | null): any {
+export function PatchedRecipeBookToJSON(value?: PatchedRecipeBook | null): any {
     if (value == null) {
         return value;
     }
@@ -113,7 +101,7 @@ export function PatchedRecipeBookToJSON(value?: Omit<PatchedRecipeBook, 'created
         'name': value['name'],
         'description': value['description'],
         'shared': value['shared'] == null ? undefined : ((value['shared'] as Array<any>).map(UserToJSON)),
-        'filter': CustomFilterToJSON(value['filter']),
+        'filter': ExportRequestCustomFilterToJSON(value['filter']),
         'order': value['order'],
     };
 }

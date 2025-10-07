@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Group } from './Group';
-import {
-    GroupFromJSON,
-    GroupFromJSONTyped,
-    GroupToJSON,
-} from './Group';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * Adds nested create feature
@@ -67,7 +55,7 @@ export interface UserSpace {
      * @type {string}
      * @memberof UserSpace
      */
-    internalNote?: string;
+    internalNote?: string | null;
     /**
      * 
      * @type {number}
@@ -123,7 +111,7 @@ export function UserSpaceFromJSONTyped(json: any, ignoreDiscriminator: boolean):
     };
 }
 
-export function UserSpaceToJSON(value?: Omit<UserSpace, 'user'|'space'|'inviteLink'|'createdAt'|'updatedAt'> | null): any {
+export function UserSpaceToJSON(value?: UserSpace | null): any {
     if (value == null) {
         return value;
     }

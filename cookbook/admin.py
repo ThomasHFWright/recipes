@@ -91,8 +91,27 @@ admin.site.register(SearchPreference, SearchPreferenceAdmin)
 
 
 class AiProviderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'space', 'model_name',)
-    search_fields = ('name', 'space', 'model_name',)
+    list_display = ('name', 'space', 'model_name', 'import_prompt_short')
+    search_fields = ('name', 'space__name', 'model_name', 'import_prompt')
+    fields = (
+        'name',
+        'description',
+        'import_prompt',
+        'api_key',
+        'model_name',
+        'url',
+        'log_credit_cost',
+        'space',
+        'created_at',
+        'updated_at',
+    )
+    readonly_fields = ('created_at', 'updated_at')
+
+    @staticmethod
+    def import_prompt_short(obj):
+        if not obj.import_prompt:
+            return ''
+        return (obj.import_prompt[:75] + '…') if len(obj.import_prompt) > 75 else obj.import_prompt
 
 
 admin.site.register(AiProvider, AiProviderAdmin)

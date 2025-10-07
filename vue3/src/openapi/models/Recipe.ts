@@ -13,36 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { Keyword } from './Keyword';
-import {
-    KeywordFromJSON,
-    KeywordFromJSONTyped,
-    KeywordToJSON,
-} from './Keyword';
-import type { Step } from './Step';
-import {
-    StepFromJSON,
-    StepFromJSONTyped,
-    StepToJSON,
-} from './Step';
-import type { Property } from './Property';
-import {
-    PropertyFromJSON,
-    PropertyFromJSONTyped,
-    PropertyToJSON,
-} from './Property';
-import type { NutritionInformation } from './NutritionInformation';
-import {
-    NutritionInformationFromJSON,
-    NutritionInformationFromJSONTyped,
-    NutritionInformationToJSON,
-} from './NutritionInformation';
 
 /**
  * Adds nested create feature
@@ -67,7 +37,7 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
@@ -121,7 +91,7 @@ export interface Recipe {
      * @type {string}
      * @memberof Recipe
      */
-    sourceUrl?: string;
+    sourceUrl?: string | null;
     /**
      * 
      * @type {boolean}
@@ -136,10 +106,10 @@ export interface Recipe {
     showIngredientOverview?: boolean;
     /**
      * 
-     * @type {NutritionInformation}
+     * @type {PatchedRecipeNutrition}
      * @memberof Recipe
      */
-    nutrition?: NutritionInformation;
+    nutrition?: PatchedRecipeNutrition | null;
     /**
      * 
      * @type {Array<Property>}
@@ -236,7 +206,7 @@ export function RecipeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
         'sourceUrl': json['source_url'] == null ? undefined : json['source_url'],
         'internal': json['internal'] == null ? undefined : json['internal'],
         'showIngredientOverview': json['show_ingredient_overview'] == null ? undefined : json['show_ingredient_overview'],
-        'nutrition': json['nutrition'] == null ? undefined : NutritionInformationFromJSON(json['nutrition']),
+        'nutrition': json['nutrition'] == null ? undefined : PatchedRecipeNutritionFromJSON(json['nutrition']),
         'properties': json['properties'] == null ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'foodProperties': json['food_properties'],
         'servings': json['servings'] == null ? undefined : json['servings'],
@@ -249,7 +219,7 @@ export function RecipeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Re
     };
 }
 
-export function RecipeToJSON(value?: Omit<Recipe, 'image'|'createdBy'|'createdAt'|'updatedAt'|'foodProperties'|'rating'|'lastCooked'> | null): any {
+export function RecipeToJSON(value?: Recipe | null): any {
     if (value == null) {
         return value;
     }
@@ -265,7 +235,7 @@ export function RecipeToJSON(value?: Omit<Recipe, 'image'|'createdBy'|'createdAt
         'source_url': value['sourceUrl'],
         'internal': value['internal'],
         'show_ingredient_overview': value['showIngredientOverview'],
-        'nutrition': NutritionInformationToJSON(value['nutrition']),
+        'nutrition': PatchedRecipeNutritionToJSON(value['nutrition']),
         'properties': value['properties'] == null ? undefined : ((value['properties'] as Array<any>).map(PropertyToJSON)),
         'servings': value['servings'],
         'file_path': value['filePath'],

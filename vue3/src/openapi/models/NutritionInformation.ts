@@ -54,7 +54,7 @@ export interface NutritionInformation {
      * @type {string}
      * @memberof NutritionInformation
      */
-    source?: string;
+    source?: string | null;
 }
 
 /**

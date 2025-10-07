@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MealPlan } from './MealPlan';
-import {
-    MealPlanFromJSON,
-    MealPlanFromJSONTyped,
-    MealPlanToJSON,
-} from './MealPlan';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { RecipeOverview } from './RecipeOverview';
-import {
-    RecipeOverviewFromJSON,
-    RecipeOverviewFromJSONTyped,
-    RecipeOverviewToJSON,
-} from './RecipeOverview';
 
 /**
  * 
@@ -55,7 +37,7 @@ export interface PatchedShoppingListRecipe {
      * @type {number}
      * @memberof PatchedShoppingListRecipe
      */
-    recipe?: number;
+    recipe?: number | null;
     /**
      * 
      * @type {RecipeOverview}
@@ -67,7 +49,7 @@ export interface PatchedShoppingListRecipe {
      * @type {number}
      * @memberof PatchedShoppingListRecipe
      */
-    mealplan?: number;
+    mealplan?: number | null;
     /**
      * 
      * @type {MealPlan}
@@ -116,7 +98,7 @@ export function PatchedShoppingListRecipeFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function PatchedShoppingListRecipeToJSON(value?: Omit<PatchedShoppingListRecipe, 'recipeData'|'mealPlanData'|'createdBy'> | null): any {
+export function PatchedShoppingListRecipeToJSON(value?: PatchedShoppingListRecipe | null): any {
     if (value == null) {
         return value;
     }

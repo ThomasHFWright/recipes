@@ -65,7 +65,7 @@ export function ShoppingListEntryBulkFromJSONTyped(json: any, ignoreDiscriminato
     };
 }
 
-export function ShoppingListEntryBulkToJSON(value?: Omit<ShoppingListEntryBulk, 'timestamp'> | null): any {
+export function ShoppingListEntryBulkToJSON(value?: ShoppingListEntryBulk | null): any {
     if (value == null) {
         return value;
     }

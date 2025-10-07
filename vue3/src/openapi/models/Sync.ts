@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Storage } from './Storage';
-import {
-    StorageFromJSON,
-    StorageFromJSONTyped,
-    StorageToJSON,
-} from './Storage';
 
 /**
  * Adds nested create feature
@@ -55,7 +49,7 @@ export interface Sync {
      * @type {Date}
      * @memberof Sync
      */
-    lastChecked?: Date;
+    lastChecked?: Date | null;
     /**
      * 
      * @type {Date}
@@ -100,7 +94,7 @@ export function SyncFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sync
     };
 }
 
-export function SyncToJSON(value?: Omit<Sync, 'createdAt'|'updatedAt'> | null): any {
+export function SyncToJSON(value?: Sync | null): any {
     if (value == null) {
         return value;
     }

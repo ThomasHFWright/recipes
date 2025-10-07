@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { BookmarkletImportList } from './BookmarkletImportList';
-import {
-    BookmarkletImportListFromJSON,
-    BookmarkletImportListFromJSONTyped,
-    BookmarkletImportListToJSON,
-} from './BookmarkletImportList';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedBookmarkletImportListList {
      * @type {string}
      * @memberof PaginatedBookmarkletImportListList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedBookmarkletImportListList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<BookmarkletImportList>}

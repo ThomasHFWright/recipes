@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { SearchFields } from './SearchFields';
-import {
-    SearchFieldsFromJSON,
-    SearchFieldsFromJSONTyped,
-    SearchFieldsToJSON,
-} from './SearchFields';
-import type { SearchEnum } from './SearchEnum';
-import {
-    SearchEnumFromJSON,
-    SearchEnumFromJSONTyped,
-    SearchEnumToJSON,
-} from './SearchEnum';
 
 /**
  * Adds nested create feature
@@ -61,31 +43,31 @@ export interface SearchPreference {
      * @type {Array<SearchFields>}
      * @memberof SearchPreference
      */
-    unaccent?: Array<SearchFields>;
+    unaccent?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof SearchPreference
      */
-    icontains?: Array<SearchFields>;
+    icontains?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof SearchPreference
      */
-    istartswith?: Array<SearchFields>;
+    istartswith?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof SearchPreference
      */
-    trigram?: Array<SearchFields>;
+    trigram?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof SearchPreference
      */
-    fulltext?: Array<SearchFields>;
+    fulltext?: Array<SearchFields> | null;
     /**
      * 
      * @type {number}
@@ -124,7 +106,7 @@ export function SearchPreferenceFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function SearchPreferenceToJSON(value?: Omit<SearchPreference, 'user'> | null): any {
+export function SearchPreferenceToJSON(value?: SearchPreference | null): any {
     if (value == null) {
         return value;
     }

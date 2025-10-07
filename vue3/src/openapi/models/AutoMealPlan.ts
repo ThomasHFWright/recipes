@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * 
@@ -61,7 +55,7 @@ export interface AutoMealPlan {
      * @type {Array<User>}
      * @memberof AutoMealPlan
      */
-    shared?: Array<User>;
+    shared?: Array<User> | null;
     /**
      * 
      * @type {boolean}

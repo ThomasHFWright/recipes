@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Sync } from './Sync';
-import {
-    SyncFromJSON,
-    SyncFromJSONTyped,
-    SyncToJSON,
-} from './Sync';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedSyncList {
      * @type {string}
      * @memberof PaginatedSyncList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedSyncList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Sync>}

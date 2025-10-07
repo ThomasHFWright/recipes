@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RecipeBook } from './RecipeBook';
-import {
-    RecipeBookFromJSON,
-    RecipeBookFromJSONTyped,
-    RecipeBookToJSON,
-} from './RecipeBook';
-import type { RecipeOverview } from './RecipeOverview';
-import {
-    RecipeOverviewFromJSON,
-    RecipeOverviewFromJSONTyped,
-    RecipeOverviewToJSON,
-} from './RecipeOverview';
 
 /**
  * 
@@ -89,7 +77,7 @@ export function PatchedRecipeBookEntryFromJSONTyped(json: any, ignoreDiscriminat
     };
 }
 
-export function PatchedRecipeBookEntryToJSON(value?: Omit<PatchedRecipeBookEntry, 'bookContent'|'recipeContent'> | null): any {
+export function PatchedRecipeBookEntryToJSON(value?: PatchedRecipeBookEntry | null): any {
     if (value == null) {
         return value;
     }

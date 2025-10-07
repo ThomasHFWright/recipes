@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * 
@@ -43,19 +37,19 @@ export interface PatchedCookLog {
      * @type {number}
      * @memberof PatchedCookLog
      */
-    servings?: number;
+    servings?: number | null;
     /**
      * 
      * @type {number}
      * @memberof PatchedCookLog
      */
-    rating?: number;
+    rating?: number | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedCookLog
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * 
      * @type {User}
@@ -104,7 +98,7 @@ export function PatchedCookLogFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function PatchedCookLogToJSON(value?: Omit<PatchedCookLog, 'createdBy'|'updatedAt'> | null): any {
+export function PatchedCookLogToJSON(value?: PatchedCookLog | null): any {
     if (value == null) {
         return value;
     }

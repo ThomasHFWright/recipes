@@ -13,42 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SupermarketCategory } from './SupermarketCategory';
-import {
-    SupermarketCategoryFromJSON,
-    SupermarketCategoryFromJSONTyped,
-    SupermarketCategoryToJSON,
-} from './SupermarketCategory';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Property } from './Property';
-import {
-    PropertyFromJSON,
-    PropertyFromJSONTyped,
-    PropertyToJSON,
-} from './Property';
-import type { FoodInheritField } from './FoodInheritField';
-import {
-    FoodInheritFieldFromJSON,
-    FoodInheritFieldFromJSONTyped,
-    FoodInheritFieldToJSON,
-} from './FoodInheritField';
-import type { FoodSimple } from './FoodSimple';
-import {
-    FoodSimpleFromJSON,
-    FoodSimpleFromJSONTyped,
-    FoodSimpleToJSON,
-} from './FoodSimple';
-import type { RecipeSimple } from './RecipeSimple';
-import {
-    RecipeSimpleFromJSON,
-    RecipeSimpleFromJSONTyped,
-    RecipeSimpleToJSON,
-} from './RecipeSimple';
 
 /**
  * Moves `UniqueValidator`'s from the validation stage to the save stage.
@@ -107,7 +71,7 @@ export interface PatchedFood {
      * @type {string}
      * @memberof PatchedFood
      */
-    pluralName?: string;
+    pluralName?: string | null;
     /**
      * 
      * @type {string}
@@ -122,22 +86,22 @@ export interface PatchedFood {
     readonly shopping?: string;
     /**
      * 
-     * @type {RecipeSimple}
+     * @type {FoodRecipe}
      * @memberof PatchedFood
      */
-    recipe?: RecipeSimple;
+    recipe?: FoodRecipe | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedFood
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {Array<Property>}
      * @memberof PatchedFood
      */
-    properties?: Array<Property>;
+    properties?: Array<Property> | null;
     /**
      * 
      * @type {number}
@@ -146,28 +110,28 @@ export interface PatchedFood {
     propertiesFoodAmount?: number;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof PatchedFood
      */
-    propertiesFoodUnit?: Unit;
+    propertiesFoodUnit?: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
      * @memberof PatchedFood
      */
-    fdcId?: number;
+    fdcId?: number | null;
     /**
      * 
      * @type {boolean}
      * @memberof PatchedFood
      */
-    foodOnhand?: boolean;
+    foodOnhand?: boolean | null;
     /**
      * 
-     * @type {SupermarketCategory}
+     * @type {FoodSupermarketCategory}
      * @memberof PatchedFood
      */
-    supermarketCategory?: SupermarketCategory;
+    supermarketCategory?: FoodSupermarketCategory | null;
     /**
      * 
      * @type {number}
@@ -185,7 +149,7 @@ export interface PatchedFood {
      * @type {Array<FoodInheritField>}
      * @memberof PatchedFood
      */
-    inheritFields?: Array<FoodInheritField>;
+    inheritFields?: Array<FoodInheritField> | null;
     /**
      * Returns a string representation of a tree node and it's ancestors,
      * e.g. 'Cuisine > Asian > Chinese > Catonese'.
@@ -204,7 +168,7 @@ export interface PatchedFood {
      * @type {Array<FoodSimple>}
      * @memberof PatchedFood
      */
-    substitute?: Array<FoodSimple>;
+    substitute?: Array<FoodSimple> | null;
     /**
      * 
      * @type {boolean}
@@ -228,13 +192,13 @@ export interface PatchedFood {
      * @type {Array<FoodInheritField>}
      * @memberof PatchedFood
      */
-    childInheritFields?: Array<FoodInheritField>;
+    childInheritFields?: Array<FoodInheritField> | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedFood
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**
@@ -259,14 +223,14 @@ export function PatchedFoodFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'pluralName': json['plural_name'] == null ? undefined : json['plural_name'],
         'description': json['description'] == null ? undefined : json['description'],
         'shopping': json['shopping'] == null ? undefined : json['shopping'],
-        'recipe': json['recipe'] == null ? undefined : RecipeSimpleFromJSON(json['recipe']),
+        'recipe': json['recipe'] == null ? undefined : FoodRecipeFromJSON(json['recipe']),
         'url': json['url'] == null ? undefined : json['url'],
         'properties': json['properties'] == null ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'propertiesFoodAmount': json['properties_food_amount'] == null ? undefined : json['properties_food_amount'],
-        'propertiesFoodUnit': json['properties_food_unit'] == null ? undefined : UnitFromJSON(json['properties_food_unit']),
+        'propertiesFoodUnit': json['properties_food_unit'] == null ? undefined : FoodPropertiesFoodUnitFromJSON(json['properties_food_unit']),
         'fdcId': json['fdc_id'] == null ? undefined : json['fdc_id'],
         'foodOnhand': json['food_onhand'] == null ? undefined : json['food_onhand'],
-        'supermarketCategory': json['supermarket_category'] == null ? undefined : SupermarketCategoryFromJSON(json['supermarket_category']),
+        'supermarketCategory': json['supermarket_category'] == null ? undefined : FoodSupermarketCategoryFromJSON(json['supermarket_category']),
         'parent': json['parent'] == null ? undefined : json['parent'],
         'numchild': json['numchild'] == null ? undefined : json['numchild'],
         'inheritFields': json['inherit_fields'] == null ? undefined : ((json['inherit_fields'] as Array<any>).map(FoodInheritFieldFromJSON)),
@@ -281,7 +245,7 @@ export function PatchedFoodFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function PatchedFoodToJSON(value?: Omit<PatchedFood, 'shopping'|'parent'|'numchild'|'fullName'|'substituteOnhand'> | null): any {
+export function PatchedFoodToJSON(value?: PatchedFood | null): any {
     if (value == null) {
         return value;
     }
@@ -291,14 +255,14 @@ export function PatchedFoodToJSON(value?: Omit<PatchedFood, 'shopping'|'parent'|
         'name': value['name'],
         'plural_name': value['pluralName'],
         'description': value['description'],
-        'recipe': RecipeSimpleToJSON(value['recipe']),
+        'recipe': FoodRecipeToJSON(value['recipe']),
         'url': value['url'],
         'properties': value['properties'] == null ? undefined : ((value['properties'] as Array<any>).map(PropertyToJSON)),
         'properties_food_amount': value['propertiesFoodAmount'],
-        'properties_food_unit': UnitToJSON(value['propertiesFoodUnit']),
+        'properties_food_unit': FoodPropertiesFoodUnitToJSON(value['propertiesFoodUnit']),
         'fdc_id': value['fdcId'],
         'food_onhand': value['foodOnhand'],
-        'supermarket_category': SupermarketCategoryToJSON(value['supermarketCategory']),
+        'supermarket_category': FoodSupermarketCategoryToJSON(value['supermarketCategory']),
         'inherit_fields': value['inheritFields'] == null ? undefined : ((value['inheritFields'] as Array<any>).map(FoodInheritFieldToJSON)),
         'ignore_shopping': value['ignoreShopping'],
         'substitute': value['substitute'] == null ? undefined : ((value['substitute'] as Array<any>).map(FoodSimpleToJSON)),

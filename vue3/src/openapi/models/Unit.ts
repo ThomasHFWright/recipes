@@ -70,25 +70,25 @@ export interface Unit {
      * @type {string}
      * @memberof Unit
      */
-    pluralName?: string;
+    pluralName?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Unit
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Unit
      */
-    baseUnit?: string;
+    baseUnit?: string | null;
     /**
      * 
      * @type {string}
      * @memberof Unit
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**

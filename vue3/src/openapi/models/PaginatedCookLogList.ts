@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CookLog } from './CookLog';
-import {
-    CookLogFromJSON,
-    CookLogFromJSONTyped,
-    CookLogToJSON,
-} from './CookLog';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedCookLogList {
      * @type {string}
      * @memberof PaginatedCookLogList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedCookLogList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<CookLog>}

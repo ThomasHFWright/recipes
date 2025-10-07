@@ -13,36 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { Keyword } from './Keyword';
-import {
-    KeywordFromJSON,
-    KeywordFromJSONTyped,
-    KeywordToJSON,
-} from './Keyword';
-import type { Step } from './Step';
-import {
-    StepFromJSON,
-    StepFromJSONTyped,
-    StepToJSON,
-} from './Step';
-import type { Property } from './Property';
-import {
-    PropertyFromJSON,
-    PropertyFromJSONTyped,
-    PropertyToJSON,
-} from './Property';
-import type { NutritionInformation } from './NutritionInformation';
-import {
-    NutritionInformationFromJSON,
-    NutritionInformationFromJSONTyped,
-    NutritionInformationToJSON,
-} from './NutritionInformation';
 
 /**
  * Adds nested create feature
@@ -67,13 +37,13 @@ export interface PatchedRecipe {
      * @type {string}
      * @memberof PatchedRecipe
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedRecipe
      */
-    readonly image?: string;
+    readonly image?: string | null;
     /**
      * 
      * @type {Array<Keyword>}
@@ -121,7 +91,7 @@ export interface PatchedRecipe {
      * @type {string}
      * @memberof PatchedRecipe
      */
-    sourceUrl?: string;
+    sourceUrl?: string | null;
     /**
      * 
      * @type {boolean}
@@ -136,10 +106,10 @@ export interface PatchedRecipe {
     showIngredientOverview?: boolean;
     /**
      * 
-     * @type {NutritionInformation}
+     * @type {PatchedRecipeNutrition}
      * @memberof PatchedRecipe
      */
-    nutrition?: NutritionInformation;
+    nutrition?: PatchedRecipeNutrition | null;
     /**
      * 
      * @type {Array<Property>}
@@ -151,7 +121,7 @@ export interface PatchedRecipe {
      * @type {any}
      * @memberof PatchedRecipe
      */
-    readonly foodProperties?: any;
+    readonly foodProperties?: any | null;
     /**
      * 
      * @type {number}
@@ -175,13 +145,13 @@ export interface PatchedRecipe {
      * @type {number}
      * @memberof PatchedRecipe
      */
-    readonly rating?: number;
+    readonly rating?: number | null;
     /**
      * 
      * @type {Date}
      * @memberof PatchedRecipe
      */
-    readonly lastCooked?: Date;
+    readonly lastCooked?: Date | null;
     /**
      * 
      * @type {boolean}
@@ -227,7 +197,7 @@ export function PatchedRecipeFromJSONTyped(json: any, ignoreDiscriminator: boole
         'sourceUrl': json['source_url'] == null ? undefined : json['source_url'],
         'internal': json['internal'] == null ? undefined : json['internal'],
         'showIngredientOverview': json['show_ingredient_overview'] == null ? undefined : json['show_ingredient_overview'],
-        'nutrition': json['nutrition'] == null ? undefined : NutritionInformationFromJSON(json['nutrition']),
+        'nutrition': json['nutrition'] == null ? undefined : PatchedRecipeNutritionFromJSON(json['nutrition']),
         'properties': json['properties'] == null ? undefined : ((json['properties'] as Array<any>).map(PropertyFromJSON)),
         'foodProperties': json['food_properties'] == null ? undefined : json['food_properties'],
         'servings': json['servings'] == null ? undefined : json['servings'],
@@ -240,7 +210,7 @@ export function PatchedRecipeFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function PatchedRecipeToJSON(value?: Omit<PatchedRecipe, 'image'|'createdBy'|'createdAt'|'updatedAt'|'foodProperties'|'rating'|'lastCooked'> | null): any {
+export function PatchedRecipeToJSON(value?: PatchedRecipe | null): any {
     if (value == null) {
         return value;
     }
@@ -256,7 +226,7 @@ export function PatchedRecipeToJSON(value?: Omit<PatchedRecipe, 'image'|'created
         'source_url': value['sourceUrl'],
         'internal': value['internal'],
         'show_ingredient_overview': value['showIngredientOverview'],
-        'nutrition': NutritionInformationToJSON(value['nutrition']),
+        'nutrition': PatchedRecipeNutritionToJSON(value['nutrition']),
         'properties': value['properties'] == null ? undefined : ((value['properties'] as Array<any>).map(PropertyToJSON)),
         'servings': value['servings'],
         'file_path': value['filePath'],

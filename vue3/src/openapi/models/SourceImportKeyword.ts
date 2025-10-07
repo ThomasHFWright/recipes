@@ -24,7 +24,7 @@ export interface SourceImportKeyword {
      * @type {number}
      * @memberof SourceImportKeyword
      */
-    id?: number;
+    id?: number | null;
     /**
      * 
      * @type {string}

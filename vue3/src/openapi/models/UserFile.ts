@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * 
@@ -110,7 +104,7 @@ export function UserFileFromJSONTyped(json: any, ignoreDiscriminator: boolean): 
     };
 }
 
-export function UserFileToJSON(value?: Omit<UserFile, 'fileDownload'|'preview'|'fileSizeKb'|'createdBy'|'createdAt'> | null): any {
+export function UserFileToJSON(value?: UserFile | null): any {
     if (value == null) {
         return value;
     }

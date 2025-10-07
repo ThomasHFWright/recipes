@@ -13,30 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { ShoppingListRecipe } from './ShoppingListRecipe';
-import {
-    ShoppingListRecipeFromJSON,
-    ShoppingListRecipeFromJSONTyped,
-    ShoppingListRecipeToJSON,
-} from './ShoppingListRecipe';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -55,19 +31,19 @@ export interface ShoppingListEntry {
      * @type {number}
      * @memberof ShoppingListEntry
      */
-    listRecipe?: number;
+    listRecipe?: number | null;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof ShoppingListEntry
      */
-    food: Food | null;
+    food: IngredientFood | null;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof ShoppingListEntry
      */
-    unit?: Unit;
+    unit?: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
@@ -91,7 +67,7 @@ export interface ShoppingListEntry {
      * @type {number}
      * @memberof ShoppingListEntry
      */
-    ingredient?: number;
+    ingredient?: number | null;
     /**
      * 
      * @type {ShoppingListRecipe}
@@ -121,13 +97,13 @@ export interface ShoppingListEntry {
      * @type {Date}
      * @memberof ShoppingListEntry
      */
-    completedAt?: Date;
+    completedAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof ShoppingListEntry
      */
-    delayUntil?: Date;
+    delayUntil?: Date | null;
     /**
      * If a mealplan id is given try to find existing or create new ShoppingListRecipe with that meal plan and link entry to it
      * @type {number}
@@ -161,8 +137,8 @@ export function ShoppingListEntryFromJSONTyped(json: any, ignoreDiscriminator: b
         
         'id': json['id'] == null ? undefined : json['id'],
         'listRecipe': json['list_recipe'] == null ? undefined : json['list_recipe'],
-        'food': FoodFromJSON(json['food']),
-        'unit': json['unit'] == null ? undefined : UnitFromJSON(json['unit']),
+        'food': IngredientFoodFromJSON(json['food']),
+        'unit': json['unit'] == null ? undefined : FoodPropertiesFoodUnitFromJSON(json['unit']),
         'amount': json['amount'],
         'order': json['order'] == null ? undefined : json['order'],
         'checked': json['checked'] == null ? undefined : json['checked'],
@@ -177,7 +153,7 @@ export function ShoppingListEntryFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function ShoppingListEntryToJSON(value?: Omit<ShoppingListEntry, 'listRecipeData'|'createdBy'|'createdAt'|'updatedAt'> | null): any {
+export function ShoppingListEntryToJSON(value?: ShoppingListEntry | null): any {
     if (value == null) {
         return value;
     }
@@ -185,8 +161,8 @@ export function ShoppingListEntryToJSON(value?: Omit<ShoppingListEntry, 'listRec
         
         'id': value['id'],
         'list_recipe': value['listRecipe'],
-        'food': FoodToJSON(value['food']),
-        'unit': UnitToJSON(value['unit']),
+        'food': IngredientFoodToJSON(value['food']),
+        'unit': FoodPropertiesFoodUnitToJSON(value['unit']),
         'amount': value['amount'],
         'order': value['order'],
         'checked': value['checked'],

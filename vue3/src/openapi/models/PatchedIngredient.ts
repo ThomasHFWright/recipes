@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -40,16 +28,16 @@ export interface PatchedIngredient {
     id?: number;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof PatchedIngredient
      */
-    food?: Food;
+    food?: IngredientFood | null;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof PatchedIngredient
      */
-    unit?: Unit;
+    unit?: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
@@ -67,7 +55,7 @@ export interface PatchedIngredient {
      * @type {string}
      * @memberof PatchedIngredient
      */
-    note?: string;
+    note?: string | null;
     /**
      * 
      * @type {number}
@@ -91,7 +79,7 @@ export interface PatchedIngredient {
      * @type {string}
      * @memberof PatchedIngredient
      */
-    originalText?: string;
+    originalText?: string | null;
     /**
      * 
      * @type {Array<any>}
@@ -130,8 +118,8 @@ export function PatchedIngredientFromJSONTyped(json: any, ignoreDiscriminator: b
     return {
         
         'id': json['id'] == null ? undefined : json['id'],
-        'food': json['food'] == null ? undefined : FoodFromJSON(json['food']),
-        'unit': json['unit'] == null ? undefined : UnitFromJSON(json['unit']),
+        'food': json['food'] == null ? undefined : IngredientFoodFromJSON(json['food']),
+        'unit': json['unit'] == null ? undefined : FoodPropertiesFoodUnitFromJSON(json['unit']),
         'amount': json['amount'] == null ? undefined : json['amount'],
         'conversions': json['conversions'] == null ? undefined : json['conversions'],
         'note': json['note'] == null ? undefined : json['note'],
@@ -145,15 +133,15 @@ export function PatchedIngredientFromJSONTyped(json: any, ignoreDiscriminator: b
     };
 }
 
-export function PatchedIngredientToJSON(value?: Omit<PatchedIngredient, 'conversions'|'usedInRecipes'> | null): any {
+export function PatchedIngredientToJSON(value?: PatchedIngredient | null): any {
     if (value == null) {
         return value;
     }
     return {
         
         'id': value['id'],
-        'food': FoodToJSON(value['food']),
-        'unit': UnitToJSON(value['unit']),
+        'food': IngredientFoodToJSON(value['food']),
+        'unit': FoodPropertiesFoodUnitToJSON(value['unit']),
         'amount': value['amount'],
         'note': value['note'],
         'order': value['order'],

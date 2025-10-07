@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserFileView } from './UserFileView';
-import {
-    UserFileViewFromJSON,
-    UserFileViewFromJSONTyped,
-    UserFileViewToJSON,
-} from './UserFileView';
-import type { Ingredient } from './Ingredient';
-import {
-    IngredientFromJSON,
-    IngredientFromJSONTyped,
-    IngredientToJSON,
-} from './Ingredient';
 
 /**
  * Adds nested create feature
@@ -82,16 +70,16 @@ export interface Step {
     showAsHeader?: boolean;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof Step
      */
-    file?: UserFileView;
+    file?: PatchedSpaceImage | null;
     /**
      * 
      * @type {number}
      * @memberof Step
      */
-    stepRecipe?: number;
+    stepRecipe?: number | null;
     /**
      * 
      * @type {any}
@@ -141,7 +129,7 @@ export function StepFromJSONTyped(json: any, ignoreDiscriminator: boolean): Step
         'time': json['time'] == null ? undefined : json['time'],
         'order': json['order'] == null ? undefined : json['order'],
         'showAsHeader': json['show_as_header'] == null ? undefined : json['show_as_header'],
-        'file': json['file'] == null ? undefined : UserFileViewFromJSON(json['file']),
+        'file': json['file'] == null ? undefined : PatchedSpaceImageFromJSON(json['file']),
         'stepRecipe': json['step_recipe'] == null ? undefined : json['step_recipe'],
         'stepRecipeData': json['step_recipe_data'],
         'numrecipe': json['numrecipe'],
@@ -149,7 +137,7 @@ export function StepFromJSONTyped(json: any, ignoreDiscriminator: boolean): Step
     };
 }
 
-export function StepToJSON(value?: Omit<Step, 'instructionsMarkdown'|'stepRecipeData'|'numrecipe'> | null): any {
+export function StepToJSON(value?: Step | null): any {
     if (value == null) {
         return value;
     }
@@ -162,7 +150,7 @@ export function StepToJSON(value?: Omit<Step, 'instructionsMarkdown'|'stepRecipe
         'time': value['time'],
         'order': value['order'],
         'show_as_header': value['showAsHeader'],
-        'file': UserFileViewToJSON(value['file']),
+        'file': PatchedSpaceImageToJSON(value['file']),
         'step_recipe': value['stepRecipe'],
         'show_ingredients_table': value['showIngredientsTable'],
     };

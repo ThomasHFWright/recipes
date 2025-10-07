@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Step } from './Step';
-import {
-    StepFromJSON,
-    StepFromJSONTyped,
-    StepToJSON,
-} from './Step';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedStepList {
      * @type {string}
      * @memberof PaginatedStepList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedStepList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Step>}

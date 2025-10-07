@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ShoppingListRecipe } from './ShoppingListRecipe';
-import {
-    ShoppingListRecipeFromJSON,
-    ShoppingListRecipeFromJSONTyped,
-    ShoppingListRecipeToJSON,
-} from './ShoppingListRecipe';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedShoppingListRecipeList {
      * @type {string}
      * @memberof PaginatedShoppingListRecipeList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedShoppingListRecipeList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<ShoppingListRecipe>}

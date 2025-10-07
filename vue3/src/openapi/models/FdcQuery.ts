@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { FdcQueryFoods } from './FdcQueryFoods';
-import {
-    FdcQueryFoodsFromJSON,
-    FdcQueryFoodsFromJSONTyped,
-    FdcQueryFoodsToJSON,
-} from './FdcQueryFoods';
 
 /**
  * 

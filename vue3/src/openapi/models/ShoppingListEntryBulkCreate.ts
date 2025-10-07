@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ShoppingListEntrySimpleCreate } from './ShoppingListEntrySimpleCreate';
-import {
-    ShoppingListEntrySimpleCreateFromJSON,
-    ShoppingListEntrySimpleCreateFromJSONTyped,
-    ShoppingListEntrySimpleCreateToJSON,
-} from './ShoppingListEntrySimpleCreate';
 
 /**
  * 

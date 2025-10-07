@@ -29,17 +29,6 @@ export const SearchEnum = {
 export type SearchEnum = typeof SearchEnum[keyof typeof SearchEnum];
 
 
-export function instanceOfSearchEnum(value: any): boolean {
-    for (const key in SearchEnum) {
-        if (Object.prototype.hasOwnProperty.call(SearchEnum, key)) {
-            if (SearchEnum[key] === value) {
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
 export function SearchEnumFromJSON(json: any): SearchEnum {
     return SearchEnumFromJSONTyped(json, false);
 }

@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -70,16 +58,16 @@ export interface PatchedUnitConversion {
     convertedUnit?: Unit;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof PatchedUnitConversion
      */
-    food?: Food;
+    food?: IngredientFood | null;
     /**
      * 
      * @type {string}
      * @memberof PatchedUnitConversion
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**
@@ -105,12 +93,12 @@ export function PatchedUnitConversionFromJSONTyped(json: any, ignoreDiscriminato
         'baseUnit': json['base_unit'] == null ? undefined : UnitFromJSON(json['base_unit']),
         'convertedAmount': json['converted_amount'] == null ? undefined : json['converted_amount'],
         'convertedUnit': json['converted_unit'] == null ? undefined : UnitFromJSON(json['converted_unit']),
-        'food': json['food'] == null ? undefined : FoodFromJSON(json['food']),
+        'food': json['food'] == null ? undefined : IngredientFoodFromJSON(json['food']),
         'openDataSlug': json['open_data_slug'] == null ? undefined : json['open_data_slug'],
     };
 }
 
-export function PatchedUnitConversionToJSON(value?: Omit<PatchedUnitConversion, 'name'> | null): any {
+export function PatchedUnitConversionToJSON(value?: PatchedUnitConversion | null): any {
     if (value == null) {
         return value;
     }
@@ -121,7 +109,7 @@ export function PatchedUnitConversionToJSON(value?: Omit<PatchedUnitConversion, 
         'base_unit': UnitToJSON(value['baseUnit']),
         'converted_amount': value['convertedAmount'],
         'converted_unit': UnitToJSON(value['convertedUnit']),
-        'food': FoodToJSON(value['food']),
+        'food': IngredientFoodToJSON(value['food']),
         'open_data_slug': value['openDataSlug'],
     };
 }

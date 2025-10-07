@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ShoppingListEntry } from './ShoppingListEntry';
-import {
-    ShoppingListEntryFromJSON,
-    ShoppingListEntryFromJSONTyped,
-    ShoppingListEntryToJSON,
-} from './ShoppingListEntry';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedShoppingListEntryList {
      * @type {string}
      * @memberof PaginatedShoppingListEntryList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedShoppingListEntryList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<ShoppingListEntry>}

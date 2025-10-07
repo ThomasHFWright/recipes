@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { UserFile } from './UserFile';
-import {
-    UserFileFromJSON,
-    UserFileFromJSONTyped,
-    UserFileToJSON,
-} from './UserFile';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedUserFileList {
      * @type {string}
      * @memberof PaginatedUserFileList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedUserFileList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<UserFile>}

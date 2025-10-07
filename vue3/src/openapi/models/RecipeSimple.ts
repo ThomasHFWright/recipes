@@ -64,7 +64,7 @@ export function RecipeSimpleFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function RecipeSimpleToJSON(value?: Omit<RecipeSimple, 'url'> | null): any {
+export function RecipeSimpleToJSON(value?: RecipeSimple | null): any {
     if (value == null) {
         return value;
     }

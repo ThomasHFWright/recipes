@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MealType } from './MealType';
-import {
-    MealTypeFromJSON,
-    MealTypeFromJSONTyped,
-    MealTypeToJSON,
-} from './MealType';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { RecipeOverview } from './RecipeOverview';
-import {
-    RecipeOverviewFromJSON,
-    RecipeOverviewFromJSONTyped,
-    RecipeOverviewToJSON,
-} from './RecipeOverview';
 
 /**
  * Adds nested create feature
@@ -52,10 +34,10 @@ export interface PatchedMealPlan {
     title?: string;
     /**
      * 
-     * @type {RecipeOverview}
+     * @type {MealPlanRecipe}
      * @memberof PatchedMealPlan
      */
-    recipe?: RecipeOverview;
+    recipe?: MealPlanRecipe | null;
     /**
      * 
      * @type {number}
@@ -103,7 +85,7 @@ export interface PatchedMealPlan {
      * @type {Array<User>}
      * @memberof PatchedMealPlan
      */
-    shared?: Array<User>;
+    shared?: Array<User> | null;
     /**
      * 
      * @type {string}
@@ -149,7 +131,7 @@ export function PatchedMealPlanFromJSONTyped(json: any, ignoreDiscriminator: boo
         
         'id': json['id'] == null ? undefined : json['id'],
         'title': json['title'] == null ? undefined : json['title'],
-        'recipe': json['recipe'] == null ? undefined : RecipeOverviewFromJSON(json['recipe']),
+        'recipe': json['recipe'] == null ? undefined : MealPlanRecipeFromJSON(json['recipe']),
         'servings': json['servings'] == null ? undefined : json['servings'],
         'note': json['note'] == null ? undefined : json['note'],
         'noteMarkdown': json['note_markdown'] == null ? undefined : json['note_markdown'],
@@ -165,7 +147,7 @@ export function PatchedMealPlanFromJSONTyped(json: any, ignoreDiscriminator: boo
     };
 }
 
-export function PatchedMealPlanToJSON(value?: Omit<PatchedMealPlan, 'noteMarkdown'|'createdBy'|'recipeName'|'mealTypeName'|'shopping'> | null): any {
+export function PatchedMealPlanToJSON(value?: PatchedMealPlan | null): any {
     if (value == null) {
         return value;
     }
@@ -173,7 +155,7 @@ export function PatchedMealPlanToJSON(value?: Omit<PatchedMealPlan, 'noteMarkdow
         
         'id': value['id'],
         'title': value['title'],
-        'recipe': RecipeOverviewToJSON(value['recipe']),
+        'recipe': MealPlanRecipeToJSON(value['recipe']),
         'servings': value['servings'],
         'note': value['note'],
         'from_date': value['fromDate'] == null ? undefined : ((value['fromDate']).toISOString()),

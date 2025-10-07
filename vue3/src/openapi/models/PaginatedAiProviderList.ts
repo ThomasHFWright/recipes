@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AiProvider } from './AiProvider';
-import {
-    AiProviderFromJSON,
-    AiProviderFromJSONTyped,
-    AiProviderToJSON,
-} from './AiProvider';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedAiProviderList {
      * @type {string}
      * @memberof PaginatedAiProviderList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedAiProviderList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<AiProvider>}

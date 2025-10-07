@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { CustomFilter } from './CustomFilter';
-import {
-    CustomFilterFromJSON,
-    CustomFilterFromJSONTyped,
-    CustomFilterToJSON,
-} from './CustomFilter';
-import type { RecipeSimple } from './RecipeSimple';
-import {
-    RecipeSimpleFromJSON,
-    RecipeSimpleFromJSONTyped,
-    RecipeSimpleToJSON,
-} from './RecipeSimple';
 
 /**
  * 
@@ -52,10 +40,10 @@ export interface ExportRequest {
     recipes?: Array<RecipeSimple>;
     /**
      * 
-     * @type {CustomFilter}
+     * @type {ExportRequestCustomFilter}
      * @memberof ExportRequest
      */
-    customFilter?: CustomFilter;
+    customFilter?: ExportRequestCustomFilter | null;
 }
 
 /**
@@ -79,7 +67,7 @@ export function ExportRequestFromJSONTyped(json: any, ignoreDiscriminator: boole
         'type': json['type'],
         'all': json['all'] == null ? undefined : json['all'],
         'recipes': json['recipes'] == null ? undefined : ((json['recipes'] as Array<any>).map(RecipeSimpleFromJSON)),
-        'customFilter': json['custom_filter'] == null ? undefined : CustomFilterFromJSON(json['custom_filter']),
+        'customFilter': json['custom_filter'] == null ? undefined : ExportRequestCustomFilterFromJSON(json['custom_filter']),
     };
 }
 
@@ -92,7 +80,7 @@ export function ExportRequestToJSON(value?: ExportRequest | null): any {
         'type': value['type'],
         'all': value['all'],
         'recipes': value['recipes'] == null ? undefined : ((value['recipes'] as Array<any>).map(RecipeSimpleToJSON)),
-        'custom_filter': CustomFilterToJSON(value['customFilter']),
+        'custom_filter': ExportRequestCustomFilterToJSON(value['customFilter']),
     };
 }
 

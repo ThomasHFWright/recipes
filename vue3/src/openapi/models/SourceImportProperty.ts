@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SourceImportPropertyType } from './SourceImportPropertyType';
-import {
-    SourceImportPropertyTypeFromJSON,
-    SourceImportPropertyTypeFromJSONTyped,
-    SourceImportPropertyTypeToJSON,
-} from './SourceImportPropertyType';
 
 /**
  * 

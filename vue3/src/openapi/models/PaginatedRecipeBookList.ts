@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { RecipeBook } from './RecipeBook';
-import {
-    RecipeBookFromJSON,
-    RecipeBookFromJSONTyped,
-    RecipeBookToJSON,
-} from './RecipeBook';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedRecipeBookList {
      * @type {string}
      * @memberof PaginatedRecipeBookList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedRecipeBookList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<RecipeBook>}

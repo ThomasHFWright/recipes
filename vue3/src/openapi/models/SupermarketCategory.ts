@@ -70,13 +70,13 @@ export interface SupermarketCategory {
      * @type {string}
      * @memberof SupermarketCategory
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof SupermarketCategory
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**

@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AiProvider } from './AiProvider';
-import {
-    AiProviderFromJSON,
-    AiProviderFromJSONTyped,
-    AiProviderToJSON,
-} from './AiProvider';
 
 /**
  * 
@@ -73,19 +67,19 @@ export interface AiLog {
      * @type {Date}
      * @memberof AiLog
      */
-    startTime?: Date;
+    startTime?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof AiLog
      */
-    endTime?: Date;
+    endTime?: Date | null;
     /**
      * 
      * @type {number}
      * @memberof AiLog
      */
-    createdBy?: number;
+    createdBy?: number | null;
     /**
      * 
      * @type {Date}
@@ -137,7 +131,7 @@ export function AiLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): AiL
     };
 }
 
-export function AiLogToJSON(value?: Omit<AiLog, 'aiProvider'|'createdAt'|'updatedAt'> | null): any {
+export function AiLogToJSON(value?: AiLog | null): any {
     if (value == null) {
         return value;
     }

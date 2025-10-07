@@ -57,7 +57,7 @@ export function LocalizationFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function LocalizationToJSON(value?: Omit<Localization, 'code'|'language'> | null): any {
+export function LocalizationToJSON(value?: Localization | null): any {
     if (value == null) {
         return value;
     }

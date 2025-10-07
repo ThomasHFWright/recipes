@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Keyword } from './Keyword';
-import {
-    KeywordFromJSON,
-    KeywordFromJSONTyped,
-    KeywordToJSON,
-} from './Keyword';
 
 /**
  * 
@@ -111,7 +105,7 @@ export function PatchedImportLogFromJSONTyped(json: any, ignoreDiscriminator: bo
     };
 }
 
-export function PatchedImportLogToJSON(value?: Omit<PatchedImportLog, 'keyword'|'createdBy'|'createdAt'> | null): any {
+export function PatchedImportLogToJSON(value?: PatchedImportLog | null): any {
     if (value == null) {
         return value;
     }

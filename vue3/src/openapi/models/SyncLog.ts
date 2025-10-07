@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Sync } from './Sync';
-import {
-    SyncFromJSON,
-    SyncFromJSONTyped,
-    SyncToJSON,
-} from './Sync';
 
 /**
  * 
@@ -86,7 +80,7 @@ export function SyncLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): S
     };
 }
 
-export function SyncLogToJSON(value?: Omit<SyncLog, 'sync'|'createdAt'> | null): any {
+export function SyncLogToJSON(value?: SyncLog | null): any {
     if (value == null) {
         return value;
     }

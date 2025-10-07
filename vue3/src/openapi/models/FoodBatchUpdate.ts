@@ -30,7 +30,7 @@ export interface FoodBatchUpdate {
      * @type {number}
      * @memberof FoodBatchUpdate
      */
-    category?: number;
+    category?: number | null;
     /**
      * 
      * @type {Array<number>}
@@ -108,37 +108,37 @@ export interface FoodBatchUpdate {
      * @type {boolean}
      * @memberof FoodBatchUpdate
      */
-    substituteChildren?: boolean;
+    substituteChildren?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof FoodBatchUpdate
      */
-    substituteSiblings?: boolean;
+    substituteSiblings?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof FoodBatchUpdate
      */
-    ignoreShopping?: boolean;
+    ignoreShopping?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof FoodBatchUpdate
      */
-    onHand?: boolean;
+    onHand?: boolean | null;
     /**
      * 
      * @type {boolean}
      * @memberof FoodBatchUpdate
      */
-    parentRemove?: boolean;
+    parentRemove?: boolean | null;
     /**
      * 
      * @type {number}
      * @memberof FoodBatchUpdate
      */
-    parentSet?: number;
+    parentSet?: number | null;
 }
 
 /**

@@ -94,7 +94,7 @@ export function RecipeImportFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function RecipeImportToJSON(value?: Omit<RecipeImport, 'createdAt'> | null): any {
+export function RecipeImportToJSON(value?: RecipeImport | null): any {
     if (value == null) {
         return value;
     }

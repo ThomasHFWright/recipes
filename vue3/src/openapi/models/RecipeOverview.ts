@@ -13,18 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { KeywordLabel } from './KeywordLabel';
-import {
-    KeywordLabelFromJSON,
-    KeywordLabelFromJSONTyped,
-    KeywordLabelToJSON,
-} from './KeywordLabel';
 
 /**
  * Adds nested create feature
@@ -49,7 +37,7 @@ export interface RecipeOverview {
      * @type {string}
      * @memberof RecipeOverview
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {string}
@@ -195,7 +183,7 @@ export function RecipeOverviewFromJSONTyped(json: any, ignoreDiscriminator: bool
     };
 }
 
-export function RecipeOverviewToJSON(value?: Omit<RecipeOverview, 'image'|'keywords'|'workingTime'|'waitingTime'|'createdBy'|'createdAt'|'updatedAt'|'internal'|'servings'|'servingsText'|'rating'|'lastCooked'|'_new'|'recent'> | null): any {
+export function RecipeOverviewToJSON(value?: RecipeOverview | null): any {
     if (value == null) {
         return value;
     }

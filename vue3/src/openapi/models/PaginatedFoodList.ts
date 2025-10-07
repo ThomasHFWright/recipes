@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedFoodList {
      * @type {string}
      * @memberof PaginatedFoodList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedFoodList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Food>}

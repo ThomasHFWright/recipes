@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { ImportOpenDataVersionMetaData } from './ImportOpenDataVersionMetaData';
-import {
-    ImportOpenDataVersionMetaDataFromJSON,
-    ImportOpenDataVersionMetaDataFromJSONTyped,
-    ImportOpenDataVersionMetaDataToJSON,
-} from './ImportOpenDataVersionMetaData';
 
 /**
  * 

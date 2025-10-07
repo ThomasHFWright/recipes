@@ -13,42 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { UserFileView } from './UserFileView';
-import {
-    UserFileViewFromJSON,
-    UserFileViewFromJSONTyped,
-    UserFileViewToJSON,
-} from './UserFileView';
-import type { SpaceNavTextColorEnum } from './SpaceNavTextColorEnum';
-import {
-    SpaceNavTextColorEnumFromJSON,
-    SpaceNavTextColorEnumFromJSONTyped,
-    SpaceNavTextColorEnumToJSON,
-} from './SpaceNavTextColorEnum';
-import type { AiProvider } from './AiProvider';
-import {
-    AiProviderFromJSON,
-    AiProviderFromJSONTyped,
-    AiProviderToJSON,
-} from './AiProvider';
-import type { FoodInheritField } from './FoodInheritField';
-import {
-    FoodInheritFieldFromJSON,
-    FoodInheritFieldFromJSONTyped,
-    FoodInheritFieldToJSON,
-} from './FoodInheritField';
-import type { SpaceThemeEnum } from './SpaceThemeEnum';
-import {
-    SpaceThemeEnumFromJSON,
-    SpaceThemeEnumFromJSONTyped,
-    SpaceThemeEnumToJSON,
-} from './SpaceThemeEnum';
 
 /**
  * Adds nested create feature
@@ -142,16 +106,16 @@ export interface PatchedSpace {
     readonly fileSizeMb?: number;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    image?: UserFileView;
+    image?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    navLogo?: UserFileView;
+    navLogo?: PatchedSpaceImage | null;
     /**
      * 
      * @type {SpaceThemeEnum}
@@ -160,10 +124,10 @@ export interface PatchedSpace {
     spaceTheme?: SpaceThemeEnum;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    customSpaceTheme?: UserFileView;
+    customSpaceTheme?: PatchedSpaceImage | null;
     /**
      * 
      * @type {string}
@@ -178,46 +142,46 @@ export interface PatchedSpace {
     navTextColor?: SpaceNavTextColorEnum;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor32?: UserFileView;
+    logoColor32?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor128?: UserFileView;
+    logoColor128?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor144?: UserFileView;
+    logoColor144?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor180?: UserFileView;
+    logoColor180?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor192?: UserFileView;
+    logoColor192?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColor512?: UserFileView;
+    logoColor512?: PatchedSpaceImage | null;
     /**
      * 
-     * @type {UserFileView}
+     * @type {PatchedSpaceImage}
      * @memberof PatchedSpace
      */
-    logoColorSvg?: UserFileView;
+    logoColorSvg?: PatchedSpaceImage | null;
     /**
      * 
      * @type {number}
@@ -244,10 +208,10 @@ export interface PatchedSpace {
     aiEnabled?: boolean;
     /**
      * 
-     * @type {AiProvider}
+     * @type {PatchedSpaceAiDefaultProvider}
      * @memberof PatchedSpace
      */
-    aiDefaultProvider?: AiProvider;
+    aiDefaultProvider?: PatchedSpaceAiDefaultProvider | null;
     /**
      * 
      * @type {boolean}
@@ -287,29 +251,29 @@ export function PatchedSpaceFromJSONTyped(json: any, ignoreDiscriminator: boolea
         'userCount': json['user_count'] == null ? undefined : json['user_count'],
         'recipeCount': json['recipe_count'] == null ? undefined : json['recipe_count'],
         'fileSizeMb': json['file_size_mb'] == null ? undefined : json['file_size_mb'],
-        'image': json['image'] == null ? undefined : UserFileViewFromJSON(json['image']),
-        'navLogo': json['nav_logo'] == null ? undefined : UserFileViewFromJSON(json['nav_logo']),
+        'image': json['image'] == null ? undefined : PatchedSpaceImageFromJSON(json['image']),
+        'navLogo': json['nav_logo'] == null ? undefined : PatchedSpaceImageFromJSON(json['nav_logo']),
         'spaceTheme': json['space_theme'] == null ? undefined : SpaceThemeEnumFromJSON(json['space_theme']),
-        'customSpaceTheme': json['custom_space_theme'] == null ? undefined : UserFileViewFromJSON(json['custom_space_theme']),
+        'customSpaceTheme': json['custom_space_theme'] == null ? undefined : PatchedSpaceImageFromJSON(json['custom_space_theme']),
         'navBgColor': json['nav_bg_color'] == null ? undefined : json['nav_bg_color'],
         'navTextColor': json['nav_text_color'] == null ? undefined : SpaceNavTextColorEnumFromJSON(json['nav_text_color']),
-        'logoColor32': json['logo_color_32'] == null ? undefined : UserFileViewFromJSON(json['logo_color_32']),
-        'logoColor128': json['logo_color_128'] == null ? undefined : UserFileViewFromJSON(json['logo_color_128']),
-        'logoColor144': json['logo_color_144'] == null ? undefined : UserFileViewFromJSON(json['logo_color_144']),
-        'logoColor180': json['logo_color_180'] == null ? undefined : UserFileViewFromJSON(json['logo_color_180']),
-        'logoColor192': json['logo_color_192'] == null ? undefined : UserFileViewFromJSON(json['logo_color_192']),
-        'logoColor512': json['logo_color_512'] == null ? undefined : UserFileViewFromJSON(json['logo_color_512']),
-        'logoColorSvg': json['logo_color_svg'] == null ? undefined : UserFileViewFromJSON(json['logo_color_svg']),
+        'logoColor32': json['logo_color_32'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_32']),
+        'logoColor128': json['logo_color_128'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_128']),
+        'logoColor144': json['logo_color_144'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_144']),
+        'logoColor180': json['logo_color_180'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_180']),
+        'logoColor192': json['logo_color_192'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_192']),
+        'logoColor512': json['logo_color_512'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_512']),
+        'logoColorSvg': json['logo_color_svg'] == null ? undefined : PatchedSpaceImageFromJSON(json['logo_color_svg']),
         'aiCreditsMonthly': json['ai_credits_monthly'] == null ? undefined : json['ai_credits_monthly'],
         'aiCreditsBalance': json['ai_credits_balance'] == null ? undefined : json['ai_credits_balance'],
         'aiMonthlyCreditsUsed': json['ai_monthly_credits_used'] == null ? undefined : json['ai_monthly_credits_used'],
         'aiEnabled': json['ai_enabled'] == null ? undefined : json['ai_enabled'],
-        'aiDefaultProvider': json['ai_default_provider'] == null ? undefined : AiProviderFromJSON(json['ai_default_provider']),
+        'aiDefaultProvider': json['ai_default_provider'] == null ? undefined : PatchedSpaceAiDefaultProviderFromJSON(json['ai_default_provider']),
         'spaceSetupCompleted': json['space_setup_completed'] == null ? undefined : json['space_setup_completed'],
     };
 }
 
-export function PatchedSpaceToJSON(value?: Omit<PatchedSpace, 'createdBy'|'createdAt'|'maxRecipes'|'maxFileStorageMb'|'maxUsers'|'allowSharing'|'demo'|'userCount'|'recipeCount'|'fileSizeMb'|'aiMonthlyCreditsUsed'> | null): any {
+export function PatchedSpaceToJSON(value?: PatchedSpace | null): any {
     if (value == null) {
         return value;
     }
@@ -319,23 +283,23 @@ export function PatchedSpaceToJSON(value?: Omit<PatchedSpace, 'createdBy'|'creat
         'name': value['name'],
         'message': value['message'],
         'food_inherit': value['foodInherit'] == null ? undefined : ((value['foodInherit'] as Array<any>).map(FoodInheritFieldToJSON)),
-        'image': UserFileViewToJSON(value['image']),
-        'nav_logo': UserFileViewToJSON(value['navLogo']),
+        'image': PatchedSpaceImageToJSON(value['image']),
+        'nav_logo': PatchedSpaceImageToJSON(value['navLogo']),
         'space_theme': SpaceThemeEnumToJSON(value['spaceTheme']),
-        'custom_space_theme': UserFileViewToJSON(value['customSpaceTheme']),
+        'custom_space_theme': PatchedSpaceImageToJSON(value['customSpaceTheme']),
         'nav_bg_color': value['navBgColor'],
         'nav_text_color': SpaceNavTextColorEnumToJSON(value['navTextColor']),
-        'logo_color_32': UserFileViewToJSON(value['logoColor32']),
-        'logo_color_128': UserFileViewToJSON(value['logoColor128']),
-        'logo_color_144': UserFileViewToJSON(value['logoColor144']),
-        'logo_color_180': UserFileViewToJSON(value['logoColor180']),
-        'logo_color_192': UserFileViewToJSON(value['logoColor192']),
-        'logo_color_512': UserFileViewToJSON(value['logoColor512']),
-        'logo_color_svg': UserFileViewToJSON(value['logoColorSvg']),
+        'logo_color_32': PatchedSpaceImageToJSON(value['logoColor32']),
+        'logo_color_128': PatchedSpaceImageToJSON(value['logoColor128']),
+        'logo_color_144': PatchedSpaceImageToJSON(value['logoColor144']),
+        'logo_color_180': PatchedSpaceImageToJSON(value['logoColor180']),
+        'logo_color_192': PatchedSpaceImageToJSON(value['logoColor192']),
+        'logo_color_512': PatchedSpaceImageToJSON(value['logoColor512']),
+        'logo_color_svg': PatchedSpaceImageToJSON(value['logoColorSvg']),
         'ai_credits_monthly': value['aiCreditsMonthly'],
         'ai_credits_balance': value['aiCreditsBalance'],
         'ai_enabled': value['aiEnabled'],
-        'ai_default_provider': AiProviderToJSON(value['aiDefaultProvider']),
+        'ai_default_provider': PatchedSpaceAiDefaultProviderToJSON(value['aiDefaultProvider']),
         'space_setup_completed': value['spaceSetupCompleted'],
     };
 }

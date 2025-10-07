@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * 
@@ -43,19 +37,19 @@ export interface CookLog {
      * @type {number}
      * @memberof CookLog
      */
-    servings?: number;
+    servings?: number | null;
     /**
      * 
      * @type {number}
      * @memberof CookLog
      */
-    rating?: number;
+    rating?: number | null;
     /**
      * 
      * @type {string}
      * @memberof CookLog
      */
-    comment?: string;
+    comment?: string | null;
     /**
      * 
      * @type {User}
@@ -107,7 +101,7 @@ export function CookLogFromJSONTyped(json: any, ignoreDiscriminator: boolean): C
     };
 }
 
-export function CookLogToJSON(value?: Omit<CookLog, 'createdBy'|'updatedAt'> | null): any {
+export function CookLogToJSON(value?: CookLog | null): any {
     if (value == null) {
         return value;
     }

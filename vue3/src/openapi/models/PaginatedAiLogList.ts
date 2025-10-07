@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { AiLog } from './AiLog';
-import {
-    AiLogFromJSON,
-    AiLogFromJSONTyped,
-    AiLogToJSON,
-} from './AiLog';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedAiLogList {
      * @type {string}
      * @memberof PaginatedAiLogList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedAiLogList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<AiLog>}

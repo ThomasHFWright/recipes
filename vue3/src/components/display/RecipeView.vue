@@ -257,7 +257,7 @@ onBeforeUnmount(() => {
 function aiConvertRecipe() {
     let api = new ApiApi()
 
-    doAiImport(selectedAiProvider.value.id!,null, '', recipe.value.id!).then(r => {
+    doAiImport(selectedAiProvider.value.id!, null, '', recipe.value.id!, '').then(r => {
         if (r.recipe) {
             recipe.value.internal = true
             recipe.value.steps = r.recipe.steps

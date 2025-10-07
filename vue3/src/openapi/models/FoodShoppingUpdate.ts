@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { DeleteEnum } from './DeleteEnum';
-import {
-    DeleteEnumFromJSON,
-    DeleteEnumFromJSONTyped,
-    DeleteEnumToJSON,
-} from './DeleteEnum';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface FoodShoppingUpdate {
      * @type {number}
      * @memberof FoodShoppingUpdate
      */
-    amount?: number;
+    amount?: number | null;
     /**
      * ID of unit to use for the shopping list
      * @type {number}
      * @memberof FoodShoppingUpdate
      */
-    unit?: number;
+    unit?: number | null;
     /**
      * When set to true will delete all food from active shopping lists.
      * 

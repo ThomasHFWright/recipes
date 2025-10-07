@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { MealPlan } from './MealPlan';
-import {
-    MealPlanFromJSON,
-    MealPlanFromJSONTyped,
-    MealPlanToJSON,
-} from './MealPlan';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedMealPlanList {
      * @type {string}
      * @memberof PaginatedMealPlanList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedMealPlanList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<MealPlan>}

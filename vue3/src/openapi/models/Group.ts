@@ -90,7 +90,7 @@ export function GroupFromJSONTyped(json: any, ignoreDiscriminator: boolean): Gro
     };
 }
 
-export function GroupToJSON(value?: Omit<Group, 'name'> | null): any {
+export function GroupToJSON(value?: Group | null): any {
     if (value == null) {
         return value;
     }

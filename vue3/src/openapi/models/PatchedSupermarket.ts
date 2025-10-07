@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SupermarketCategoryRelation } from './SupermarketCategoryRelation';
-import {
-    SupermarketCategoryRelationFromJSON,
-    SupermarketCategoryRelationFromJSONTyped,
-    SupermarketCategoryRelationToJSON,
-} from './SupermarketCategoryRelation';
 
 /**
  * Moves `UniqueValidator`'s from the validation stage to the save stage.
@@ -77,7 +71,7 @@ export interface PatchedSupermarket {
      * @type {string}
      * @memberof PatchedSupermarket
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {Array<SupermarketCategoryRelation>}
@@ -89,7 +83,7 @@ export interface PatchedSupermarket {
      * @type {string}
      * @memberof PatchedSupermarket
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
 }
 
 /**
@@ -117,7 +111,7 @@ export function PatchedSupermarketFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function PatchedSupermarketToJSON(value?: Omit<PatchedSupermarket, 'categoryToSupermarket'> | null): any {
+export function PatchedSupermarketToJSON(value?: PatchedSupermarket | null): any {
     if (value == null) {
         return value;
     }

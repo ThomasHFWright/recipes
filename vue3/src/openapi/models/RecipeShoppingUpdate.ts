@@ -30,7 +30,7 @@ export interface RecipeShoppingUpdate {
      * @type {number}
      * @memberof RecipeShoppingUpdate
      */
-    listRecipe?: number;
+    listRecipe?: number | null;
     /**
      * 
      * @type {Array<number>}
@@ -42,7 +42,7 @@ export interface RecipeShoppingUpdate {
      * @type {number}
      * @memberof RecipeShoppingUpdate
      */
-    servings?: number;
+    servings?: number | null;
 }
 
 /**

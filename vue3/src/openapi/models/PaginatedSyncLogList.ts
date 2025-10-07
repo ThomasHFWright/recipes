@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SyncLog } from './SyncLog';
-import {
-    SyncLogFromJSON,
-    SyncLogFromJSONTyped,
-    SyncLogToJSON,
-} from './SyncLog';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedSyncLogList {
      * @type {string}
      * @memberof PaginatedSyncLogList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedSyncLogList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<SyncLog>}

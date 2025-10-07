@@ -56,7 +56,7 @@ export function KeywordLabelFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function KeywordLabelToJSON(value?: Omit<KeywordLabel, 'label'> | null): any {
+export function KeywordLabelToJSON(value?: KeywordLabel | null): any {
     if (value == null) {
         return value;
     }

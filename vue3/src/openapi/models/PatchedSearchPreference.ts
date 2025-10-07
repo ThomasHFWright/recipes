@@ -13,24 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { SearchFields } from './SearchFields';
-import {
-    SearchFieldsFromJSON,
-    SearchFieldsFromJSONTyped,
-    SearchFieldsToJSON,
-} from './SearchFields';
-import type { SearchEnum } from './SearchEnum';
-import {
-    SearchEnumFromJSON,
-    SearchEnumFromJSONTyped,
-    SearchEnumToJSON,
-} from './SearchEnum';
 
 /**
  * Adds nested create feature
@@ -61,31 +43,31 @@ export interface PatchedSearchPreference {
      * @type {Array<SearchFields>}
      * @memberof PatchedSearchPreference
      */
-    unaccent?: Array<SearchFields>;
+    unaccent?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof PatchedSearchPreference
      */
-    icontains?: Array<SearchFields>;
+    icontains?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof PatchedSearchPreference
      */
-    istartswith?: Array<SearchFields>;
+    istartswith?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof PatchedSearchPreference
      */
-    trigram?: Array<SearchFields>;
+    trigram?: Array<SearchFields> | null;
     /**
      * 
      * @type {Array<SearchFields>}
      * @memberof PatchedSearchPreference
      */
-    fulltext?: Array<SearchFields>;
+    fulltext?: Array<SearchFields> | null;
     /**
      * 
      * @type {number}
@@ -123,7 +105,7 @@ export function PatchedSearchPreferenceFromJSONTyped(json: any, ignoreDiscrimina
     };
 }
 
-export function PatchedSearchPreferenceToJSON(value?: Omit<PatchedSearchPreference, 'user'> | null): any {
+export function PatchedSearchPreferenceToJSON(value?: PatchedSearchPreference | null): any {
     if (value == null) {
         return value;
     }

@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * 
@@ -103,7 +97,7 @@ export function UserFileViewFromJSONTyped(json: any, ignoreDiscriminator: boolea
     };
 }
 
-export function UserFileViewToJSON(value?: Omit<UserFileView, 'fileDownload'|'preview'|'fileSizeKb'|'createdBy'|'createdAt'> | null): any {
+export function UserFileViewToJSON(value?: UserFileView | null): any {
     if (value == null) {
         return value;
     }

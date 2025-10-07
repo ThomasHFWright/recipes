@@ -331,6 +331,7 @@ class UserFileViewSerializer(serializers.ModelSerializer):
 
 class AiProviderSerializer(serializers.ModelSerializer):
     api_key = serializers.CharField(required=False, write_only=True)
+    default_import_prompt = serializers.CharField(read_only=True)
 
     def create(self, validated_data):
         validated_data = self.handle_global_space_logic(validated_data)
@@ -363,8 +364,21 @@ class AiProviderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AiProvider
-        fields = ('id', 'name', 'description', 'api_key', 'model_name', 'url', 'log_credit_cost', 'space', 'created_at', 'updated_at')
-        read_only_fields = ('created_at', 'updated_at',)
+        fields = (
+            'id',
+            'name',
+            'description',
+            'import_prompt',
+            'api_key',
+            'model_name',
+            'url',
+            'log_credit_cost',
+            'space',
+            'created_at',
+            'updated_at',
+            'default_import_prompt',
+        )
+        read_only_fields = ('created_at', 'updated_at', 'default_import_prompt')
 
 
 class AiLogSerializer(serializers.ModelSerializer):
@@ -1916,6 +1930,7 @@ class AiImportSerializer(serializers.Serializer):
     file = serializers.FileField(allow_null=True)
     text = serializers.CharField(allow_null=True, allow_blank=True)
     recipe_id = serializers.CharField(allow_null=True, allow_blank=True)
+    prompt = serializers.CharField(required=False, allow_blank=True, allow_null=True)
 
 
 class ExportRequestSerializer(serializers.Serializer):

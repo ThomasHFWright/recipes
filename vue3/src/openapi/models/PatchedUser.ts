@@ -97,7 +97,7 @@ export function PatchedUserFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function PatchedUserToJSON(value?: Omit<PatchedUser, 'username'|'displayName'|'isStaff'|'isSuperuser'|'isActive'> | null): any {
+export function PatchedUserToJSON(value?: PatchedUser | null): any {
     if (value == null) {
         return value;
     }

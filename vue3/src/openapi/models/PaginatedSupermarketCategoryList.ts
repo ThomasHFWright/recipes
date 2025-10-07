@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { SupermarketCategory } from './SupermarketCategory';
-import {
-    SupermarketCategoryFromJSON,
-    SupermarketCategoryFromJSONTyped,
-    SupermarketCategoryToJSON,
-} from './SupermarketCategory';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedSupermarketCategoryList {
      * @type {string}
      * @memberof PaginatedSupermarketCategoryList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedSupermarketCategoryList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<SupermarketCategory>}

@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { InviteLink } from './InviteLink';
-import {
-    InviteLinkFromJSON,
-    InviteLinkFromJSONTyped,
-    InviteLinkToJSON,
-} from './InviteLink';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedInviteLinkList {
      * @type {string}
      * @memberof PaginatedInviteLinkList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedInviteLinkList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<InviteLink>}

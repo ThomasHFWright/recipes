@@ -13,30 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
-import type { ShoppingListRecipe } from './ShoppingListRecipe';
-import {
-    ShoppingListRecipeFromJSON,
-    ShoppingListRecipeFromJSONTyped,
-    ShoppingListRecipeToJSON,
-} from './ShoppingListRecipe';
-import type { Unit } from './Unit';
-import {
-    UnitFromJSON,
-    UnitFromJSONTyped,
-    UnitToJSON,
-} from './Unit';
-import type { Food } from './Food';
-import {
-    FoodFromJSON,
-    FoodFromJSONTyped,
-    FoodToJSON,
-} from './Food';
 
 /**
  * Adds nested create feature
@@ -55,19 +31,19 @@ export interface PatchedShoppingListEntry {
      * @type {number}
      * @memberof PatchedShoppingListEntry
      */
-    listRecipe?: number;
+    listRecipe?: number | null;
     /**
      * 
-     * @type {Food}
+     * @type {IngredientFood}
      * @memberof PatchedShoppingListEntry
      */
-    food?: Food;
+    food?: IngredientFood | null;
     /**
      * 
-     * @type {Unit}
+     * @type {FoodPropertiesFoodUnit}
      * @memberof PatchedShoppingListEntry
      */
-    unit?: Unit;
+    unit?: FoodPropertiesFoodUnit | null;
     /**
      * 
      * @type {number}
@@ -91,7 +67,7 @@ export interface PatchedShoppingListEntry {
      * @type {number}
      * @memberof PatchedShoppingListEntry
      */
-    ingredient?: number;
+    ingredient?: number | null;
     /**
      * 
      * @type {ShoppingListRecipe}
@@ -121,13 +97,13 @@ export interface PatchedShoppingListEntry {
      * @type {Date}
      * @memberof PatchedShoppingListEntry
      */
-    completedAt?: Date;
+    completedAt?: Date | null;
     /**
      * 
      * @type {Date}
      * @memberof PatchedShoppingListEntry
      */
-    delayUntil?: Date;
+    delayUntil?: Date | null;
     /**
      * If a mealplan id is given try to find existing or create new ShoppingListRecipe with that meal plan and link entry to it
      * @type {number}
@@ -155,8 +131,8 @@ export function PatchedShoppingListEntryFromJSONTyped(json: any, ignoreDiscrimin
         
         'id': json['id'] == null ? undefined : json['id'],
         'listRecipe': json['list_recipe'] == null ? undefined : json['list_recipe'],
-        'food': json['food'] == null ? undefined : FoodFromJSON(json['food']),
-        'unit': json['unit'] == null ? undefined : UnitFromJSON(json['unit']),
+        'food': json['food'] == null ? undefined : IngredientFoodFromJSON(json['food']),
+        'unit': json['unit'] == null ? undefined : FoodPropertiesFoodUnitFromJSON(json['unit']),
         'amount': json['amount'] == null ? undefined : json['amount'],
         'order': json['order'] == null ? undefined : json['order'],
         'checked': json['checked'] == null ? undefined : json['checked'],
@@ -171,7 +147,7 @@ export function PatchedShoppingListEntryFromJSONTyped(json: any, ignoreDiscrimin
     };
 }
 
-export function PatchedShoppingListEntryToJSON(value?: Omit<PatchedShoppingListEntry, 'listRecipeData'|'createdBy'|'createdAt'|'updatedAt'> | null): any {
+export function PatchedShoppingListEntryToJSON(value?: PatchedShoppingListEntry | null): any {
     if (value == null) {
         return value;
     }
@@ -179,8 +155,8 @@ export function PatchedShoppingListEntryToJSON(value?: Omit<PatchedShoppingListE
         
         'id': value['id'],
         'list_recipe': value['listRecipe'],
-        'food': FoodToJSON(value['food']),
-        'unit': UnitToJSON(value['unit']),
+        'food': IngredientFoodToJSON(value['food']),
+        'unit': FoodPropertiesFoodUnitToJSON(value['unit']),
         'amount': value['amount'],
         'order': value['order'],
         'checked': value['checked'],

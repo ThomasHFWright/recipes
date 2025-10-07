@@ -42,6 +42,12 @@ export interface AiProvider {
      * @type {string}
      * @memberof AiProvider
      */
+    importPrompt?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof AiProvider
+     */
     apiKey?: string;
     /**
      * 
@@ -54,7 +60,7 @@ export interface AiProvider {
      * @type {string}
      * @memberof AiProvider
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {boolean}
@@ -66,7 +72,7 @@ export interface AiProvider {
      * @type {number}
      * @memberof AiProvider
      */
-    space?: number;
+    space?: number | null;
     /**
      * 
      * @type {Date}
@@ -79,6 +85,12 @@ export interface AiProvider {
      * @memberof AiProvider
      */
     readonly updatedAt: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof AiProvider
+     */
+    readonly defaultImportPrompt: string;
 }
 
 /**
@@ -89,6 +101,7 @@ export function instanceOfAiProvider(value: object): value is AiProvider {
     if (!('modelName' in value) || value['modelName'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
+    if (!('defaultImportPrompt' in value) || value['defaultImportPrompt'] === undefined) return false;
     return true;
 }
 
@@ -105,6 +118,7 @@ export function AiProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
+        'importPrompt': json['import_prompt'] == null ? undefined : json['import_prompt'],
         'apiKey': json['api_key'] == null ? undefined : json['api_key'],
         'modelName': json['model_name'],
         'url': json['url'] == null ? undefined : json['url'],
@@ -112,10 +126,11 @@ export function AiProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'space': json['space'] == null ? undefined : json['space'],
         'createdAt': (new Date(json['created_at'])),
         'updatedAt': (new Date(json['updated_at'])),
+        'defaultImportPrompt': json['default_import_prompt'],
     };
 }
 
-export function AiProviderToJSON(value?: Omit<AiProvider, 'createdAt'|'updatedAt'> | null): any {
+export function AiProviderToJSON(value?: AiProvider | null): any {
     if (value == null) {
         return value;
     }
@@ -124,6 +139,7 @@ export function AiProviderToJSON(value?: Omit<AiProvider, 'createdAt'|'updatedAt
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
+        'import_prompt': value['importPrompt'],
         'api_key': value['apiKey'],
         'model_name': value['modelName'],
         'url': value['url'],

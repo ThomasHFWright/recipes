@@ -83,7 +83,7 @@ export function PatchedAccessTokenFromJSONTyped(json: any, ignoreDiscriminator: 
     };
 }
 
-export function PatchedAccessTokenToJSON(value?: Omit<PatchedAccessToken, 'token'|'created'|'updated'> | null): any {
+export function PatchedAccessTokenToJSON(value?: PatchedAccessToken | null): any {
     if (value == null) {
         return value;
     }

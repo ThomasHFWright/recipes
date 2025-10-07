@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { GenericModelReference } from './GenericModelReference';
-import {
-    GenericModelReferenceFromJSON,
-    GenericModelReferenceFromJSONTyped,
-    GenericModelReferenceToJSON,
-} from './GenericModelReference';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedGenericModelReferenceList {
      * @type {string}
      * @memberof PaginatedGenericModelReferenceList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedGenericModelReferenceList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<GenericModelReference>}

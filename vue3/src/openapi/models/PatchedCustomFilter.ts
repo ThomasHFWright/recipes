@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { User } from './User';
-import {
-    UserFromJSON,
-    UserFromJSONTyped,
-    UserToJSON,
-} from './User';
 
 /**
  * Adds nested create feature
@@ -83,7 +77,7 @@ export function PatchedCustomFilterFromJSONTyped(json: any, ignoreDiscriminator:
     };
 }
 
-export function PatchedCustomFilterToJSON(value?: Omit<PatchedCustomFilter, 'createdBy'> | null): any {
+export function PatchedCustomFilterToJSON(value?: PatchedCustomFilter | null): any {
     if (value == null) {
         return value;
     }

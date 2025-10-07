@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Storage } from './Storage';
-import {
-    StorageFromJSON,
-    StorageFromJSONTyped,
-    StorageToJSON,
-} from './Storage';
 
 /**
  * 
@@ -37,13 +31,13 @@ export interface PaginatedStorageList {
      * @type {string}
      * @memberof PaginatedStorageList
      */
-    next?: string;
+    next?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PaginatedStorageList
      */
-    previous?: string;
+    previous?: string | null;
     /**
      * 
      * @type {Array<Storage>}

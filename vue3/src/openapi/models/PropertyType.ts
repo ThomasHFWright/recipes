@@ -36,13 +36,13 @@ export interface PropertyType {
      * @type {string}
      * @memberof PropertyType
      */
-    unit?: string;
+    unit?: string | null;
     /**
      * 
      * @type {string}
      * @memberof PropertyType
      */
-    description?: string;
+    description?: string | null;
     /**
      * 
      * @type {number}
@@ -54,13 +54,13 @@ export interface PropertyType {
      * @type {string}
      * @memberof PropertyType
      */
-    openDataSlug?: string;
+    openDataSlug?: string | null;
     /**
      * 
      * @type {number}
      * @memberof PropertyType
      */
-    fdcId?: number;
+    fdcId?: number | null;
 }
 
 /**

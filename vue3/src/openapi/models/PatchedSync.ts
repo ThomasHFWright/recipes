@@ -13,12 +13,6 @@
  */
 
 import { mapValues } from '../runtime';
-import type { Storage } from './Storage';
-import {
-    StorageFromJSON,
-    StorageFromJSONTyped,
-    StorageToJSON,
-} from './Storage';
 
 /**
  * Adds nested create feature
@@ -55,7 +49,7 @@ export interface PatchedSync {
      * @type {Date}
      * @memberof PatchedSync
      */
-    lastChecked?: Date;
+    lastChecked?: Date | null;
     /**
      * 
      * @type {Date}
@@ -97,7 +91,7 @@ export function PatchedSyncFromJSONTyped(json: any, ignoreDiscriminator: boolean
     };
 }
 
-export function PatchedSyncToJSON(value?: Omit<PatchedSync, 'createdAt'|'updatedAt'> | null): any {
+export function PatchedSyncToJSON(value?: PatchedSync | null): any {
     if (value == null) {
         return value;
     }

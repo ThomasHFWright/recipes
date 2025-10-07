@@ -24,19 +24,19 @@ export interface RecipeFromSource {
      * @type {string}
      * @memberof RecipeFromSource
      */
-    url?: string;
+    url?: string | null;
     /**
      * 
      * @type {string}
      * @memberof RecipeFromSource
      */
-    data?: string;
+    data?: string | null;
     /**
      * 
      * @type {number}
      * @memberof RecipeFromSource
      */
-    bookmarklet?: number;
+    bookmarklet?: number | null;
 }
 
 /**
