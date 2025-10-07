@@ -56,13 +56,19 @@ export interface AiProvider {
      */
     url?: string;
     /**
-     * 
+     *
      * @type {boolean}
      * @memberof AiProvider
      */
     logCreditCost?: boolean;
     /**
-     * 
+     *
+     * @type {string}
+     * @memberof AiProvider
+     */
+    importPrompt?: string;
+    /**
+     *
      * @type {number}
      * @memberof AiProvider
      */
@@ -109,6 +115,7 @@ export function AiProviderFromJSONTyped(json: any, ignoreDiscriminator: boolean)
         'modelName': json['model_name'],
         'url': json['url'] == null ? undefined : json['url'],
         'logCreditCost': json['log_credit_cost'] == null ? undefined : json['log_credit_cost'],
+        'importPrompt': json['import_prompt'] == null ? undefined : json['import_prompt'],
         'space': json['space'] == null ? undefined : json['space'],
         'createdAt': (new Date(json['created_at'])),
         'updatedAt': (new Date(json['updated_at'])),
@@ -128,6 +135,7 @@ export function AiProviderToJSON(value?: Omit<AiProvider, 'createdAt'|'updatedAt
         'model_name': value['modelName'],
         'url': value['url'],
         'log_credit_cost': value['logCreditCost'],
+        'import_prompt': value['importPrompt'],
         'space': value['space'],
     };
 }

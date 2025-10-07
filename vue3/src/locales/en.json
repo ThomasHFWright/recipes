@@ -36,6 +36,8 @@
   "AiModelHelp": "The list contains model that are offically tested and supported. You can add additional models if you want.",
   "AiProvider": "AI Provider",
   "AiProviderHelp": "You can configure multiple AI providers according to your preferences. They can even be configured to work across multiple spaces.",
+  "ImportPrompt": "Import prompt",
+  "ImportPromptHelp": "Override the instructions sent to this AI provider when importing recipes. Leave empty to use the system default.",
   "Alignment": "Alignment",
   "AllRecipes": "All Recipes",
   "Amount": "Amount",

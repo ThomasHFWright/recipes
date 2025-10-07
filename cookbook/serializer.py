@@ -363,7 +363,7 @@ class AiProviderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AiProvider
-        fields = ('id', 'name', 'description', 'api_key', 'model_name', 'url', 'log_credit_cost', 'space', 'created_at', 'updated_at')
+        fields = ('id', 'name', 'description', 'api_key', 'model_name', 'url', 'log_credit_cost', 'import_prompt', 'space', 'created_at', 'updated_at')
         read_only_fields = ('created_at', 'updated_at',)
 
 
