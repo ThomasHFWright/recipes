@@ -416,6 +416,7 @@ class AiProvider(models.Model):
     model_name = models.CharField(max_length=256)
     url = models.CharField(max_length=2048, blank=True, null=True)
     log_credit_cost = models.BooleanField(default=True)
+    import_prompt = models.TextField(blank=True, default='')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
